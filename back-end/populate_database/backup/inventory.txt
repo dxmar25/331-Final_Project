@@ -1,0 +1,274 @@
+GET /inventory/
+HTTP 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+[
+    {
+        "id": 5,
+        "name": "Tomato",
+        "price": 0.31,
+        "stock": 500,
+        "reorder_level": 100
+    },
+    {
+        "id": 6,
+        "name": "Onions",
+        "price": 0.3,
+        "stock": 500,
+        "reorder_level": 100
+    },
+    {
+        "id": 7,
+        "name": "Bacon",
+        "price": 0.15,
+        "stock": 500,
+        "reorder_level": 50
+    },
+    {
+        "id": 8,
+        "name": "Bun",
+        "price": 0.25,
+        "stock": 1500,
+        "reorder_level": 100
+    },
+    {
+        "id": 9,
+        "name": "Black Bean",
+        "price": 0.05,
+        "stock": 1000,
+        "reorder_level": 100
+    },
+    {
+        "id": 10,
+        "name": "Chicken Tender",
+        "price": 0.15,
+        "stock": 800,
+        "reorder_level": 50
+    },
+    {
+        "id": 11,
+        "name": "Texas Toast",
+        "price": 0.2,
+        "stock": 500,
+        "reorder_level": 100
+    },
+    {
+        "id": 12,
+        "name": "Gravy",
+        "price": 0.15,
+        "stock": 750,
+        "reorder_level": 200
+    },
+    {
+        "id": 13,
+        "name": "Steak Finger",
+        "price": 0.2,
+        "stock": 1000,
+        "reorder_level": 100
+    },
+    {
+        "id": 14,
+        "name": "American Swiss",
+        "price": 0.1,
+        "stock": 1000,
+        "reorder_level": 50
+    },
+    {
+        "id": 15,
+        "name": "Pepper Jack Cheese",
+        "price": 0.1,
+        "stock": 1000,
+        "reorder_level": 50
+    },
+    {
+        "id": 16,
+        "name": "Grilled Chicken",
+        "price": 0.5,
+        "stock": 300,
+        "reorder_level": 50
+    },
+    {
+        "id": 17,
+        "name": "Cookie",
+        "price": 0.5,
+        "stock": 300,
+        "reorder_level": 30
+    },
+    {
+        "id": 18,
+        "name": "Brownie",
+        "price": 0.5,
+        "stock": 300,
+        "reorder_level": 30
+    },
+    {
+        "id": 19,
+        "name": "Chocolate Ice Cream",
+        "price": 0.15,
+        "stock": 400,
+        "reorder_level": 50
+    },
+    {
+        "id": 20,
+        "name": "Vanilla Ice Cream",
+        "price": 0.15,
+        "stock": 400,
+        "reorder_level": 50
+    },
+    {
+        "id": 21,
+        "name": "Cappuccino Ice Cream",
+        "price": 0.15,
+        "stock": 400,
+        "reorder_level": 50
+    },
+    {
+        "id": 22,
+        "name": "Milk",
+        "price": 0.15,
+        "stock": 300,
+        "reorder_level": 50
+    },
+    {
+        "id": 23,
+        "name": "Salad",
+        "price": 0.2,
+        "stock": 400,
+        "reorder_level": 40
+    },
+    {
+        "id": 24,
+        "name": "Reg Cup",
+        "price": 0.05,
+        "stock": 1000,
+        "reorder_level": 200
+    },
+    {
+        "id": 25,
+        "name": "Large Cup",
+        "price": 0.05,
+        "stock": 1000,
+        "reorder_level": 200
+    },
+    {
+        "id": 26,
+        "name": "Coffee",
+        "price": 0.02,
+        "stock": 500,
+        "reorder_level": 100
+    },
+    {
+        "id": 27,
+        "name": "Fries",
+        "price": 0.15,
+        "stock": 3000,
+        "reorder_level": 500
+    },
+    {
+        "id": 28,
+        "name": "Tator Tots",
+        "price": 0.15,
+        "stock": 2000,
+        "reorder_level": 300
+    },
+    {
+        "id": 29,
+        "name": "Onion Rings",
+        "price": 0.15,
+        "stock": 1500,
+        "reorder_level": 300
+    },
+    {
+        "id": 30,
+        "name": "Kettle Chips",
+        "price": 0.25,
+        "stock": 500,
+        "reorder_level": 100
+    },
+    {
+        "id": 31,
+        "name": "Gig 'Em Sauce",
+        "price": 0.01,
+        "stock": 2000,
+        "reorder_level": 200
+    },
+    {
+        "id": 32,
+        "name": "Buffalo",
+        "price": 0.01,
+        "stock": 2000,
+        "reorder_level": 200
+    },
+    {
+        "id": 33,
+        "name": "Ranch",
+        "price": 0.01,
+        "stock": 2000,
+        "reorder_level": 200
+    },
+    {
+        "id": 34,
+        "name": "BBQ Sauce",
+        "price": 0.01,
+        "stock": 2000,
+        "reorder_level": 200
+    },
+    {
+        "id": 35,
+        "name": "Honey Mustard",
+        "price": 0.01,
+        "stock": 2000,
+        "reorder_level": 200
+    },
+    {
+        "id": 36,
+        "name": "Spicy Ranch",
+        "price": 0.01,
+        "stock": 2000,
+        "reorder_level": 200
+    },
+    {
+        "id": 37,
+        "name": "Napkins",
+        "price": 0.05,
+        "stock": 2000,
+        "reorder_level": 200
+    },
+    {
+        "id": 38,
+        "name": "Straw",
+        "price": 0.02,
+        "stock": 2000,
+        "reorder_level": 200
+    },
+    {
+        "id": 1,
+        "name": "Beef Patty",
+        "price": 0.5,
+        "stock": 450,
+        "reorder_level": 50
+    },
+    {
+        "id": 2,
+        "name": "American Cheese",
+        "price": 0.69,
+        "stock": 1000,
+        "reorder_level": 50
+    },
+    {
+        "id": 3,
+        "name": "Pickle",
+        "price": 0.02,
+        "stock": 3000,
+        "reorder_level": 500
+    },
+    {
+        "id": 4,
+        "name": "Lettuce",
+        "price": 0.05,
+        "stock": 1000,
+        "reorder_level": 200
+    }
+]

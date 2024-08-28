@@ -1,0 +1,32 @@
+{
+  "name": "front-end",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "5.15.3",
+    "@popperjs/core": "^2.11.8",
+    "@vuepic/vue-datepicker": "^8.5.0",
+    "axios": "^1.6.8",
+    "chart.js": "2.9.4",
+    "vue": "^3.4.21",
+    "vue-flatpickr-component": "^11.0.5",
+    "vue-router": "^4.3.0",
+    "vue3-google-login": "^2.0.26"
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.12",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "vite": "^5.2.0"
+  }
+}
