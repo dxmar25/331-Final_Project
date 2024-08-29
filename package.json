@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "styleguide": "vue-cli-service styleguidist",
+    "styleguide:build": "vue-cli-service styleguidist:build"
+  },
+  "dependencies": {
+    "@vuepic/vue-datepicker": "^8.5.0"
+  },
+  "devDependencies": {
+    "vue-cli-plugin-styleguidist": "~4.72.4",
+    "vue-styleguidist": "^4.72.4",
+    "webpack": "^5.91.0"
+  }
+}

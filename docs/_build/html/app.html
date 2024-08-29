@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>app package &mdash; Rev&#39;s Restaurant POS System 3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d636b35b"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="app.migrations package" href="app.migrations.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Rev's Restaurant POS System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">app package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.migrations.html">app.migrations package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app.models.html">app.models package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.admin">app.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.apps">app.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#app.apps.AppConfig"><code class="docutils literal notranslate"><span class="pre">AppConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.apps.AppConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">AppConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.apps.AppConfig.name"><code class="docutils literal notranslate"><span class="pre">AppConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.models">app.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.serializers">app.serializers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#app.serializers.ExcessReportSerializer"><code class="docutils literal notranslate"><span class="pre">ExcessReportSerializer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.serializers.InventoryCountSerializer"><code class="docutils literal notranslate"><span class="pre">InventoryCountSerializer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.serializers.InventorySerializer"><code class="docutils literal notranslate"><span class="pre">InventorySerializer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.serializers.MenuInventorySerializer"><code class="docutils literal notranslate"><span class="pre">MenuInventorySerializer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.serializers.MenuSerializer"><code class="docutils literal notranslate"><span class="pre">MenuSerializer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.serializers.OrderMenuSerializer"><code class="docutils literal notranslate"><span class="pre">OrderMenuSerializer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.serializers.OrderSerializer"><code class="docutils literal notranslate"><span class="pre">OrderSerializer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.serializers.RestockReportSerializer"><code class="docutils literal notranslate"><span class="pre">RestockReportSerializer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.serializers.SalesReportSerializer"><code class="docutils literal notranslate"><span class="pre">SalesReportSerializer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.serializers.SellsTogetherSerializer"><code class="docutils literal notranslate"><span class="pre">SellsTogetherSerializer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.serializers.UserSerializer"><code class="docutils literal notranslate"><span class="pre">UserSerializer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.serializers.WeatherSerializer"><code class="docutils literal notranslate"><span class="pre">WeatherSerializer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.tests">app.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.urls">app.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.views">app.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.ExcessReportView"><code class="docutils literal notranslate"><span class="pre">ExcessReportView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.ExcessReportView.get"><code class="docutils literal notranslate"><span class="pre">ExcessReportView.get()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.InventoryViewSet"><code class="docutils literal notranslate"><span class="pre">InventoryViewSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.InventoryViewSet.destroy"><code class="docutils literal notranslate"><span class="pre">InventoryViewSet.destroy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.InventoryViewSet.filter_backends"><code class="docutils literal notranslate"><span class="pre">InventoryViewSet.filter_backends</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.InventoryViewSet.ordering_fields"><code class="docutils literal notranslate"><span class="pre">InventoryViewSet.ordering_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.InventoryViewSet.queryset"><code class="docutils literal notranslate"><span class="pre">InventoryViewSet.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.InventoryViewSet.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryViewSet.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.MenuInventoryViewSet"><code class="docutils literal notranslate"><span class="pre">MenuInventoryViewSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.MenuInventoryViewSet.filter_backends"><code class="docutils literal notranslate"><span class="pre">MenuInventoryViewSet.filter_backends</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.MenuInventoryViewSet.get_queryset"><code class="docutils literal notranslate"><span class="pre">MenuInventoryViewSet.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.MenuInventoryViewSet.queryset"><code class="docutils literal notranslate"><span class="pre">MenuInventoryViewSet.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.MenuInventoryViewSet.search_fields"><code class="docutils literal notranslate"><span class="pre">MenuInventoryViewSet.search_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.MenuInventoryViewSet.serializer_class"><code class="docutils literal notranslate"><span class="pre">MenuInventoryViewSet.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.MenuViewSet"><code class="docutils literal notranslate"><span class="pre">MenuViewSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.MenuViewSet.filter_backends"><code class="docutils literal notranslate"><span class="pre">MenuViewSet.filter_backends</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.MenuViewSet.get_queryset"><code class="docutils literal notranslate"><span class="pre">MenuViewSet.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.MenuViewSet.ordering_fields"><code class="docutils literal notranslate"><span class="pre">MenuViewSet.ordering_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.MenuViewSet.queryset"><code class="docutils literal notranslate"><span class="pre">MenuViewSet.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.MenuViewSet.serializer_class"><code class="docutils literal notranslate"><span class="pre">MenuViewSet.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.OrderMenuViewSet"><code class="docutils literal notranslate"><span class="pre">OrderMenuViewSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.OrderMenuViewSet.delete"><code class="docutils literal notranslate"><span class="pre">OrderMenuViewSet.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.OrderMenuViewSet.filter_backends"><code class="docutils literal notranslate"><span class="pre">OrderMenuViewSet.filter_backends</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.OrderMenuViewSet.get_queryset"><code class="docutils literal notranslate"><span class="pre">OrderMenuViewSet.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.OrderMenuViewSet.queryset"><code class="docutils literal notranslate"><span class="pre">OrderMenuViewSet.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.OrderMenuViewSet.search_fields"><code class="docutils literal notranslate"><span class="pre">OrderMenuViewSet.search_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.OrderMenuViewSet.serializer_class"><code class="docutils literal notranslate"><span class="pre">OrderMenuViewSet.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.OrderViewSet"><code class="docutils literal notranslate"><span class="pre">OrderViewSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.OrderViewSet.filter_backends"><code class="docutils literal notranslate"><span class="pre">OrderViewSet.filter_backends</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.OrderViewSet.get_queryset"><code class="docutils literal notranslate"><span class="pre">OrderViewSet.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.OrderViewSet.ordering_fields"><code class="docutils literal notranslate"><span class="pre">OrderViewSet.ordering_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.OrderViewSet.queryset"><code class="docutils literal notranslate"><span class="pre">OrderViewSet.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.OrderViewSet.search_fields"><code class="docutils literal notranslate"><span class="pre">OrderViewSet.search_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.OrderViewSet.serializer_class"><code class="docutils literal notranslate"><span class="pre">OrderViewSet.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.ProductUsageChart"><code class="docutils literal notranslate"><span class="pre">ProductUsageChart</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.ProductUsageChart.get"><code class="docutils literal notranslate"><span class="pre">ProductUsageChart.get()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.RestockReportView"><code class="docutils literal notranslate"><span class="pre">RestockReportView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.RestockReportView.get"><code class="docutils literal notranslate"><span class="pre">RestockReportView.get()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.SalesReportChart"><code class="docutils literal notranslate"><span class="pre">SalesReportChart</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.SalesReportChart.get"><code class="docutils literal notranslate"><span class="pre">SalesReportChart.get()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.SellsTogetherView"><code class="docutils literal notranslate"><span class="pre">SellsTogetherView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.SellsTogetherView.get"><code class="docutils literal notranslate"><span class="pre">SellsTogetherView.get()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.UserViewSet"><code class="docutils literal notranslate"><span class="pre">UserViewSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.UserViewSet.create"><code class="docutils literal notranslate"><span class="pre">UserViewSet.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.UserViewSet.filter_backends"><code class="docutils literal notranslate"><span class="pre">UserViewSet.filter_backends</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.UserViewSet.ordering_fields"><code class="docutils literal notranslate"><span class="pre">UserViewSet.ordering_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.UserViewSet.queryset"><code class="docutils literal notranslate"><span class="pre">UserViewSet.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.UserViewSet.serializer_class"><code class="docutils literal notranslate"><span class="pre">UserViewSet.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.WeatherAPIView"><code class="docutils literal notranslate"><span class="pre">WeatherAPIView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app.views.WeatherAPIView.get"><code class="docutils literal notranslate"><span class="pre">WeatherAPIView.get()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.views.home"><code class="docutils literal notranslate"><span class="pre">home()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.weather">app.weather module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#app.weather.getAggregateData"><code class="docutils literal notranslate"><span class="pre">getAggregateData()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.weather.getCurrentInfo"><code class="docutils literal notranslate"><span class="pre">getCurrentInfo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.weather.getSurgePricing"><code class="docutils literal notranslate"><span class="pre">getSurgePricing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.weather.getTemperature"><code class="docutils literal notranslate"><span class="pre">getTemperature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.weather.getWeatherConditionName"><code class="docutils literal notranslate"><span class="pre">getWeatherConditionName()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.weather.getWeatherIcon"><code class="docutils literal notranslate"><span class="pre">getWeatherIcon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="populate_database.html">populate_database package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="revs_backend.html">revs_backend package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Rev's Restaurant POS System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">app package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/app.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="app-package">
+<h1>app package<a class="headerlink" href="#app-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app.migrations.html">app.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="app.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.migrations.html#module-app.migrations.0001_initial">app.migrations.0001_initial module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.migrations.html#app.migrations.0001_initial.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0001_initial.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0001_initial.Migration.initial"><code class="docutils literal notranslate"><span class="pre">Migration.initial</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0001_initial.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.migrations.html#module-app.migrations.0002_remove_user_is_manager_user_user_type_and_more">app.migrations.0002_remove_user_is_manager_user_user_type_and_more module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.migrations.html#app.migrations.0002_remove_user_is_manager_user_user_type_and_more.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0002_remove_user_is_manager_user_user_type_and_more.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0002_remove_user_is_manager_user_user_type_and_more.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.migrations.html#module-app.migrations.0003_remove_user_clocked_time">app.migrations.0003_remove_user_clocked_time module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.migrations.html#app.migrations.0003_remove_user_clocked_time.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0003_remove_user_clocked_time.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0003_remove_user_clocked_time.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.migrations.html#module-app.migrations.0004_rename_inventory_menuinventory_inventory_id_and_more">app.migrations.0004_rename_inventory_menuinventory_inventory_id_and_more module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.migrations.html#app.migrations.0004_rename_inventory_menuinventory_inventory_id_and_more.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0004_rename_inventory_menuinventory_inventory_id_and_more.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0004_rename_inventory_menuinventory_inventory_id_and_more.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.migrations.html#module-app.migrations.0005_rename_inventory_id_menuinventory_inventory_and_more">app.migrations.0005_rename_inventory_id_menuinventory_inventory_and_more module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.migrations.html#app.migrations.0005_rename_inventory_id_menuinventory_inventory_and_more.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0005_rename_inventory_id_menuinventory_inventory_and_more.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0005_rename_inventory_id_menuinventory_inventory_and_more.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.migrations.html#module-app.migrations.0006_alter_inventory_name_alter_menu_description_and_more">app.migrations.0006_alter_inventory_name_alter_menu_description_and_more module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.migrations.html#app.migrations.0006_alter_inventory_name_alter_menu_description_and_more.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0006_alter_inventory_name_alter_menu_description_and_more.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0006_alter_inventory_name_alter_menu_description_and_more.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.migrations.html#module-app.migrations.0007_remove_order_is_completed_order_status_and_more">app.migrations.0007_remove_order_is_completed_order_status_and_more module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.migrations.html#app.migrations.0007_remove_order_is_completed_order_status_and_more.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0007_remove_order_is_completed_order_status_and_more.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0007_remove_order_is_completed_order_status_and_more.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.migrations.html#module-app.migrations.0008_menu_display_alter_order_employee">app.migrations.0008_menu_display_alter_order_employee module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.migrations.html#app.migrations.0008_menu_display_alter_order_employee.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0008_menu_display_alter_order_employee.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0008_menu_display_alter_order_employee.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.migrations.html#module-app.migrations.0009_alter_menu_category_alter_menu_description">app.migrations.0009_alter_menu_category_alter_menu_description module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.migrations.html#app.migrations.0009_alter_menu_category_alter_menu_description.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0009_alter_menu_category_alter_menu_description.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0009_alter_menu_category_alter_menu_description.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.migrations.html#module-app.migrations.0010_alter_menu_category">app.migrations.0010_alter_menu_category module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.migrations.html#app.migrations.0010_alter_menu_category.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0010_alter_menu_category.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.migrations.html#app.migrations.0010_alter_menu_category.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.migrations.html#module-app.migrations">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="app.models.html">app.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="app.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.models.html#module-app.models.inventory">app.models.inventory module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.models.html#app.models.inventory.Inventory"><code class="docutils literal notranslate"><span class="pre">Inventory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.inventory.Inventory.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Inventory.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.inventory.Inventory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Inventory.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.inventory.Inventory.id"><code class="docutils literal notranslate"><span class="pre">Inventory.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.inventory.Inventory.menuinventory_set"><code class="docutils literal notranslate"><span class="pre">Inventory.menuinventory_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.inventory.Inventory.name"><code class="docutils literal notranslate"><span class="pre">Inventory.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.inventory.Inventory.objects"><code class="docutils literal notranslate"><span class="pre">Inventory.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.inventory.Inventory.price"><code class="docutils literal notranslate"><span class="pre">Inventory.price</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.inventory.Inventory.reorder_level"><code class="docutils literal notranslate"><span class="pre">Inventory.reorder_level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.inventory.Inventory.stock"><code class="docutils literal notranslate"><span class="pre">Inventory.stock</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.models.html#module-app.models.menu">app.models.menu module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.models.html#app.models.menu.Menu"><code class="docutils literal notranslate"><span class="pre">Menu</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.CategoryOptions"><code class="docutils literal notranslate"><span class="pre">Menu.CategoryOptions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Menu.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Menu.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.category"><code class="docutils literal notranslate"><span class="pre">Menu.category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.description"><code class="docutils literal notranslate"><span class="pre">Menu.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.display"><code class="docutils literal notranslate"><span class="pre">Menu.display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.get_category_display"><code class="docutils literal notranslate"><span class="pre">Menu.get_category_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.get_next_by_season_end"><code class="docutils literal notranslate"><span class="pre">Menu.get_next_by_season_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.get_next_by_season_start"><code class="docutils literal notranslate"><span class="pre">Menu.get_next_by_season_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.get_previous_by_season_end"><code class="docutils literal notranslate"><span class="pre">Menu.get_previous_by_season_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.get_previous_by_season_start"><code class="docutils literal notranslate"><span class="pre">Menu.get_previous_by_season_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.id"><code class="docutils literal notranslate"><span class="pre">Menu.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.image"><code class="docutils literal notranslate"><span class="pre">Menu.image</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.menuinventory_set"><code class="docutils literal notranslate"><span class="pre">Menu.menuinventory_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.name"><code class="docutils literal notranslate"><span class="pre">Menu.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.objects"><code class="docutils literal notranslate"><span class="pre">Menu.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.ordermenu_set"><code class="docutils literal notranslate"><span class="pre">Menu.ordermenu_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.price"><code class="docutils literal notranslate"><span class="pre">Menu.price</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.season_end"><code class="docutils literal notranslate"><span class="pre">Menu.season_end</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu.Menu.season_start"><code class="docutils literal notranslate"><span class="pre">Menu.season_start</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.models.html#module-app.models.menu_inventory">app.models.menu_inventory module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.models.html#app.models.menu_inventory.MenuInventory"><code class="docutils literal notranslate"><span class="pre">MenuInventory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu_inventory.MenuInventory.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">MenuInventory.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu_inventory.MenuInventory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">MenuInventory.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu_inventory.MenuInventory.id"><code class="docutils literal notranslate"><span class="pre">MenuInventory.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu_inventory.MenuInventory.inventory"><code class="docutils literal notranslate"><span class="pre">MenuInventory.inventory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu_inventory.MenuInventory.inventory_id"><code class="docutils literal notranslate"><span class="pre">MenuInventory.inventory_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu_inventory.MenuInventory.menu"><code class="docutils literal notranslate"><span class="pre">MenuInventory.menu</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu_inventory.MenuInventory.menu_id"><code class="docutils literal notranslate"><span class="pre">MenuInventory.menu_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.menu_inventory.MenuInventory.objects"><code class="docutils literal notranslate"><span class="pre">MenuInventory.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.models.html#module-app.models.order">app.models.order module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.models.html#app.models.order.Order"><code class="docutils literal notranslate"><span class="pre">Order</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Order.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Order.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.Status"><code class="docutils literal notranslate"><span class="pre">Order.Status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.employee"><code class="docutils literal notranslate"><span class="pre">Order.employee</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.employee_id"><code class="docutils literal notranslate"><span class="pre">Order.employee_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.getOrderFromTime"><code class="docutils literal notranslate"><span class="pre">Order.getOrderFromTime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.get_next_by_timestamp"><code class="docutils literal notranslate"><span class="pre">Order.get_next_by_timestamp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.get_previous_by_timestamp"><code class="docutils literal notranslate"><span class="pre">Order.get_previous_by_timestamp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.get_status_display"><code class="docutils literal notranslate"><span class="pre">Order.get_status_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.id"><code class="docutils literal notranslate"><span class="pre">Order.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.objects"><code class="docutils literal notranslate"><span class="pre">Order.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.ordermenu_set"><code class="docutils literal notranslate"><span class="pre">Order.ordermenu_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.status"><code class="docutils literal notranslate"><span class="pre">Order.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.timestamp"><code class="docutils literal notranslate"><span class="pre">Order.timestamp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order.Order.total"><code class="docutils literal notranslate"><span class="pre">Order.total</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.models.html#module-app.models.order_menu">app.models.order_menu module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.models.html#app.models.order_menu.OrderMenu"><code class="docutils literal notranslate"><span class="pre">OrderMenu</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order_menu.OrderMenu.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">OrderMenu.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order_menu.OrderMenu.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">OrderMenu.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order_menu.OrderMenu.id"><code class="docutils literal notranslate"><span class="pre">OrderMenu.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order_menu.OrderMenu.menu"><code class="docutils literal notranslate"><span class="pre">OrderMenu.menu</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order_menu.OrderMenu.menu_id"><code class="docutils literal notranslate"><span class="pre">OrderMenu.menu_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order_menu.OrderMenu.objects"><code class="docutils literal notranslate"><span class="pre">OrderMenu.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order_menu.OrderMenu.order"><code class="docutils literal notranslate"><span class="pre">OrderMenu.order</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order_menu.OrderMenu.order_id"><code class="docutils literal notranslate"><span class="pre">OrderMenu.order_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.order_menu.OrderMenu.quantity"><code class="docutils literal notranslate"><span class="pre">OrderMenu.quantity</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.models.html#module-app.models.user">app.models.user module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.models.html#app.models.user.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.user.User.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">User.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.user.User.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">User.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.user.User.UserOptions"><code class="docutils literal notranslate"><span class="pre">User.UserOptions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.user.User.email"><code class="docutils literal notranslate"><span class="pre">User.email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.user.User.get_user_type_display"><code class="docutils literal notranslate"><span class="pre">User.get_user_type_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.user.User.id"><code class="docutils literal notranslate"><span class="pre">User.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.user.User.name"><code class="docutils literal notranslate"><span class="pre">User.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.user.User.objects"><code class="docutils literal notranslate"><span class="pre">User.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.user.User.order_set"><code class="docutils literal notranslate"><span class="pre">User.order_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.user.User.shift_end"><code class="docutils literal notranslate"><span class="pre">User.shift_end</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.user.User.shift_start"><code class="docutils literal notranslate"><span class="pre">User.shift_start</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="app.models.html#app.models.user.User.user_type"><code class="docutils literal notranslate"><span class="pre">User.user_type</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.models.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-app.admin">
+<span id="app-admin-module"></span><h2>app.admin module<a class="headerlink" href="#module-app.admin" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-app.apps">
+<span id="app-apps-module"></span><h2>app.apps module<a class="headerlink" href="#module-app.apps" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.apps.AppConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.apps.</span></span><span class="sig-name descname"><span class="pre">AppConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.apps.AppConfig" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/applications/#django.apps.AppConfig" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></a></p>
+<p>This is a AppConfig class derived from Django’s AppConfig class</p>
+<p>It configures the Django backend</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.apps.AppConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#app.apps.AppConfig.default_auto_field" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.apps.AppConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'app'</span></em><a class="headerlink" href="#app.apps.AppConfig.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.models">
+<span id="app-models-module"></span><h2>app.models module<a class="headerlink" href="#module-app.models" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-app.serializers">
+<span id="app-serializers-module"></span><h2>app.serializers module<a class="headerlink" href="#module-app.serializers" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.serializers.ExcessReportSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.serializers.</span></span><span class="sig-name descname"><span class="pre">ExcessReportSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.serializers.ExcessReportSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Serializer</span></code></p>
+<p>Creates serialization for the Excess Report as follows:</p>
+<ul class="simple">
+<li><p>element1 (Character Field)</p></li>
+<li><p>element2 (Integer Field)</p></li>
+<li><p>element3 (Integer Field)</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.serializers.InventoryCountSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.serializers.</span></span><span class="sig-name descname"><span class="pre">InventoryCountSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.serializers.InventoryCountSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Serializer</span></code></p>
+<p>Serializes the Inventory Count program as follows:</p>
+<ul class="simple">
+<li><p>name represents the name of the inventory item</p></li>
+<li><p>count represents the count of the named inventory item</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.serializers.InventorySerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.serializers.</span></span><span class="sig-name descname"><span class="pre">InventorySerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.serializers.InventorySerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializes the Inventory Model</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.serializers.MenuInventorySerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.serializers.</span></span><span class="sig-name descname"><span class="pre">MenuInventorySerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.serializers.MenuInventorySerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializes the MenuInventory Model</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.serializers.MenuSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.serializers.</span></span><span class="sig-name descname"><span class="pre">MenuSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.serializers.MenuSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializes the Menu Model</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.serializers.OrderMenuSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.serializers.</span></span><span class="sig-name descname"><span class="pre">OrderMenuSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.serializers.OrderMenuSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializes the OrderMenu Model</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.serializers.OrderSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.serializers.</span></span><span class="sig-name descname"><span class="pre">OrderSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.serializers.OrderSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializes the Order Model</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.serializers.RestockReportSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.serializers.</span></span><span class="sig-name descname"><span class="pre">RestockReportSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.serializers.RestockReportSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Serializer</span></code></p>
+<p>Creates serialization for the Restock Report as follows:</p>
+<ul class="simple">
+<li><p>element1 (Character Field)</p></li>
+<li><p>element2 (Integer Field)</p></li>
+<li><p>element3 (Integer Field)</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.serializers.SalesReportSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.serializers.</span></span><span class="sig-name descname"><span class="pre">SalesReportSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.serializers.SalesReportSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Serializer</span></code></p>
+<p>Creates serialization for the Sales Report as follows:</p>
+<ul class="simple">
+<li><p>element1 (Character Field)</p></li>
+<li><p>element2 (Integer Field)</p></li>
+<li><p>element3 (Decimal Field)</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.serializers.SellsTogetherSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.serializers.</span></span><span class="sig-name descname"><span class="pre">SellsTogetherSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.serializers.SellsTogetherSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Serializer</span></code></p>
+<p>Creates serialization for the Sells Together Report as follows:</p>
+<ul class="simple">
+<li><p>element1 (Character Field)</p></li>
+<li><p>element2 (Character Field)</p></li>
+<li><p>element3 (Integer Field)</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.serializers.UserSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.serializers.</span></span><span class="sig-name descname"><span class="pre">UserSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.serializers.UserSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializes the User Model</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.serializers.WeatherSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.serializers.</span></span><span class="sig-name descname"><span class="pre">WeatherSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.serializers.WeatherSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Serializer</span></code></p>
+<p>Serializes the Weather program as follows:</p>
+<ul class="simple">
+<li><p>temperature field is a Float Field, representing current temperature at a location</p></li>
+<li><p>icon field returns the icon to choose to represent the current weather condition</p></li>
+<li><p>condition field returns a description of the current weather</p></li>
+<li><p>surge field gives the multiplier for surge pricing</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="module-app.tests">
+<span id="app-tests-module"></span><h2>app.tests module<a class="headerlink" href="#module-app.tests" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-app.urls">
+<span id="app-urls-module"></span><h2>app.urls module<a class="headerlink" href="#module-app.urls" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-app.views">
+<span id="app-views-module"></span><h2>app.views module<a class="headerlink" href="#module-app.views" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.views.ExcessReportView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">ExcessReportView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.ExcessReportView" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.ExcessReportView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.ExcessReportView.get" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.views.InventoryViewSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">InventoryViewSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.InventoryViewSet" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelViewSet</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.InventoryViewSet.destroy">
+<span class="sig-name descname"><span class="pre">destroy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.InventoryViewSet.destroy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.InventoryViewSet.filter_backends">
+<span class="sig-name descname"><span class="pre">filter_backends</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.filters.OrderingFilter'&gt;]</span></em><a class="headerlink" href="#app.views.InventoryViewSet.filter_backends" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.InventoryViewSet.ordering_fields">
+<span class="sig-name descname"><span class="pre">ordering_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__all__'</span></em><a class="headerlink" href="#app.views.InventoryViewSet.ordering_fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.InventoryViewSet.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">QuerySet</span></em><a class="headerlink" href="#app.views.InventoryViewSet.queryset" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.InventoryViewSet.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#app.views.InventoryViewSet.serializer_class" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#app.serializers.InventorySerializer" title="app.serializers.InventorySerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">InventorySerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.views.MenuInventoryViewSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">MenuInventoryViewSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.MenuInventoryViewSet" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelViewSet</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.MenuInventoryViewSet.filter_backends">
+<span class="sig-name descname"><span class="pre">filter_backends</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.filters.SearchFilter'&gt;]</span></em><a class="headerlink" href="#app.views.MenuInventoryViewSet.filter_backends" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.MenuInventoryViewSet.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.views.MenuInventoryViewSet.get_queryset" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.MenuInventoryViewSet.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">QuerySet</span></em><a class="headerlink" href="#app.views.MenuInventoryViewSet.queryset" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.MenuInventoryViewSet.search_fields">
+<span class="sig-name descname"><span class="pre">search_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('=id',</span> <span class="pre">'=menu_id')</span></em><a class="headerlink" href="#app.views.MenuInventoryViewSet.search_fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.MenuInventoryViewSet.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#app.views.MenuInventoryViewSet.serializer_class" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#app.serializers.MenuInventorySerializer" title="app.serializers.MenuInventorySerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuInventorySerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.views.MenuViewSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">MenuViewSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.MenuViewSet" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelViewSet</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.MenuViewSet.filter_backends">
+<span class="sig-name descname"><span class="pre">filter_backends</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.filters.OrderingFilter'&gt;]</span></em><a class="headerlink" href="#app.views.MenuViewSet.filter_backends" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.MenuViewSet.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.views.MenuViewSet.get_queryset" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.MenuViewSet.ordering_fields">
+<span class="sig-name descname"><span class="pre">ordering_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__all__'</span></em><a class="headerlink" href="#app.views.MenuViewSet.ordering_fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.MenuViewSet.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">QuerySet</span></em><a class="headerlink" href="#app.views.MenuViewSet.queryset" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.MenuViewSet.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#app.views.MenuViewSet.serializer_class" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#app.serializers.MenuSerializer" title="app.serializers.MenuSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.views.OrderMenuViewSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">OrderMenuViewSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.OrderMenuViewSet" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelViewSet</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.OrderMenuViewSet.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.OrderMenuViewSet.delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.OrderMenuViewSet.filter_backends">
+<span class="sig-name descname"><span class="pre">filter_backends</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.filters.SearchFilter'&gt;]</span></em><a class="headerlink" href="#app.views.OrderMenuViewSet.filter_backends" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.OrderMenuViewSet.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.views.OrderMenuViewSet.get_queryset" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.OrderMenuViewSet.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">QuerySet</span></em><a class="headerlink" href="#app.views.OrderMenuViewSet.queryset" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.OrderMenuViewSet.search_fields">
+<span class="sig-name descname"><span class="pre">search_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('=id',</span> <span class="pre">'=order__id')</span></em><a class="headerlink" href="#app.views.OrderMenuViewSet.search_fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.OrderMenuViewSet.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#app.views.OrderMenuViewSet.serializer_class" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#app.serializers.OrderMenuSerializer" title="app.serializers.OrderMenuSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderMenuSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.views.OrderViewSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">OrderViewSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.OrderViewSet" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelViewSet</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.OrderViewSet.filter_backends">
+<span class="sig-name descname"><span class="pre">filter_backends</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.filters.OrderingFilter'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'rest_framework.filters.SearchFilter'&gt;]</span></em><a class="headerlink" href="#app.views.OrderViewSet.filter_backends" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.OrderViewSet.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.views.OrderViewSet.get_queryset" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.OrderViewSet.ordering_fields">
+<span class="sig-name descname"><span class="pre">ordering_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__all__'</span></em><a class="headerlink" href="#app.views.OrderViewSet.ordering_fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.OrderViewSet.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">QuerySet</span></em><a class="headerlink" href="#app.views.OrderViewSet.queryset" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.OrderViewSet.search_fields">
+<span class="sig-name descname"><span class="pre">search_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('=id',</span> <span class="pre">'=status')</span></em><a class="headerlink" href="#app.views.OrderViewSet.search_fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.OrderViewSet.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#app.views.OrderViewSet.serializer_class" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#app.serializers.OrderSerializer" title="app.serializers.OrderSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.views.ProductUsageChart">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">ProductUsageChart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.ProductUsageChart" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.ProductUsageChart.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.ProductUsageChart.get" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.views.RestockReportView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">RestockReportView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.RestockReportView" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.RestockReportView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.RestockReportView.get" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.views.SalesReportChart">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">SalesReportChart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.SalesReportChart" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.SalesReportChart.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.SalesReportChart.get" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.views.SellsTogetherView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">SellsTogetherView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.SellsTogetherView" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.SellsTogetherView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.SellsTogetherView.get" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.views.UserViewSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">UserViewSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.UserViewSet" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelViewSet</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.UserViewSet.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.UserViewSet.create" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.UserViewSet.filter_backends">
+<span class="sig-name descname"><span class="pre">filter_backends</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.filters.OrderingFilter'&gt;]</span></em><a class="headerlink" href="#app.views.UserViewSet.filter_backends" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.UserViewSet.ordering_fields">
+<span class="sig-name descname"><span class="pre">ordering_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__all__'</span></em><a class="headerlink" href="#app.views.UserViewSet.ordering_fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.UserViewSet.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">QuerySet</span></em><a class="headerlink" href="#app.views.UserViewSet.queryset" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.views.UserViewSet.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#app.views.UserViewSet.serializer_class" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#app.serializers.UserSerializer" title="app.serializers.UserSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.views.WeatherAPIView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">WeatherAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.WeatherAPIView" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.views.WeatherAPIView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.WeatherAPIView.get" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.views.home">
+<span class="sig-prename descclassname"><span class="pre">app.views.</span></span><span class="sig-name descname"><span class="pre">home</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.views.home" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-app.weather">
+<span id="app-weather-module"></span><h2>app.weather module<a class="headerlink" href="#module-app.weather" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.weather.getAggregateData">
+<span class="sig-prename descclassname"><span class="pre">app.weather.</span></span><span class="sig-name descname"><span class="pre">getAggregateData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.weather.getAggregateData" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.weather.getCurrentInfo">
+<span class="sig-prename descclassname"><span class="pre">app.weather.</span></span><span class="sig-name descname"><span class="pre">getCurrentInfo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.weather.getCurrentInfo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.weather.getSurgePricing">
+<span class="sig-prename descclassname"><span class="pre">app.weather.</span></span><span class="sig-name descname"><span class="pre">getSurgePricing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.weather.getSurgePricing" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.weather.getTemperature">
+<span class="sig-prename descclassname"><span class="pre">app.weather.</span></span><span class="sig-name descname"><span class="pre">getTemperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.weather.getTemperature" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.weather.getWeatherConditionName">
+<span class="sig-prename descclassname"><span class="pre">app.weather.</span></span><span class="sig-name descname"><span class="pre">getWeatherConditionName</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.weather.getWeatherConditionName" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.weather.getWeatherIcon">
+<span class="sig-prename descclassname"><span class="pre">app.weather.</span></span><span class="sig-name descname"><span class="pre">getWeatherIcon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.weather.getWeatherIcon" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-app">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-app" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="app.migrations.html" class="btn btn-neutral float-right" title="app.migrations package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rushil Jayant, Riley Wenckens, Rahul Rajendran, Elvis Chen, Diego Martinez, Laith Bohsali.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

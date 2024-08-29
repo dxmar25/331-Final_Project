@@ -1,0 +1,33 @@
+revs\-backend package
+=====================
+
+Submodules
+----------
+
+revs\-backend.asgi module
+-------------------------
+
+.. module:: revs_backend.asgi
+
+revs\-backend.settings module
+-----------------------------
+
+.. module:: revs_backend.settings
+
+
+revs\-backend.urls module
+-------------------------
+
+.. module:: revs_backend.urls
+
+
+revs\-backend.wsgi module
+-------------------------
+
+.. module:: revs_backend.wsgi
+
+
+Module contents
+---------------
+
+.. module:: revs_backend

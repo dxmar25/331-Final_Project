@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>app.models package &mdash; Rev&#39;s Restaurant POS System 3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d636b35b"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="populate_database package" href="populate_database.html" />
+    <link rel="prev" title="app.migrations package" href="app.migrations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Rev's Restaurant POS System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="app.html">app package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="app.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="app.migrations.html">app.migrations package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">app.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.models.inventory">app.models.inventory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.models.menu">app.models.menu module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.models.menu_inventory">app.models.menu_inventory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.models.order">app.models.order module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.models.order_menu">app.models.order_menu module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-app.models.user">app.models.user module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html#module-app.admin">app.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html#module-app.apps">app.apps module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html#module-app.models">app.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html#module-app.serializers">app.serializers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html#module-app.tests">app.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html#module-app.urls">app.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html#module-app.views">app.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html#module-app.weather">app.weather module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html#module-app">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="populate_database.html">populate_database package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="revs_backend.html">revs_backend package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Rev's Restaurant POS System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">&lt;no title&gt;</a></li>
+          <li class="breadcrumb-item"><a href="app.html">app package</a></li>
+      <li class="breadcrumb-item active">app.models package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/app.models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="app-models-package">
+<h1>app.models package<a class="headerlink" href="#app-models-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-app.models.inventory">
+<span id="app-models-inventory-module"></span><h2>app.models.inventory module<a class="headerlink" href="#module-app.models.inventory" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.models.inventory.Inventory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.models.inventory.</span></span><span class="sig-name descname"><span class="pre">Inventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.inventory.Inventory" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<p>This is a Django Model of the Inventory Table</p>
+<p>It contains:</p>
+<ul class="simple">
+<li><p>name: Name of inventory item</p></li>
+<li><p>price: Price in dollars of the inventory item</p></li>
+<li><p>stock: Current Stock of the Item</p></li>
+<li><p>reorder_level: Level needed to reorder inventory item</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.0)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.TextField" title="(in Django v5.0)"><em>TextField</em></a>) – Name</p></li>
+<li><p><strong>price</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.FloatField" title="(in Django v5.0)"><em>FloatField</em></a>) – Price</p></li>
+<li><p><strong>stock</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.0)"><em>IntegerField</em></a>) – Stock</p></li>
+<li><p><strong>reorder_level</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.0)"><em>IntegerField</em></a>) – Reorder level</p></li>
+</ul>
+</dd>
+</dl>
+<p>Reverse relationships:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>menuinventory</strong> (Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#app.models.menu_inventory.MenuInventory" title="app.models.menu_inventory.MenuInventory"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuInventory</span></code></a>) – All menu inventorys of this inventory (related name of <a class="reference internal" href="#app.models.menu_inventory.MenuInventory.inventory" title="app.models.menu_inventory.MenuInventory.inventory"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inventory</span></code></a>)</p>
+</dd>
+</dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="app.models.inventory.Inventory.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#app.models.inventory.Inventory.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.ObjectDoesNotExist" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="app.models.inventory.Inventory.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#app.models.inventory.Inventory.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.MultipleObjectsReturned" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.inventory.Inventory.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#app.models.inventory.Inventory.id" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BigAutoField</span></code></a></p>
+<p>Primary key: ID</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.inventory.Inventory.menuinventory_set">
+<span class="sig-name descname"><span class="pre">menuinventory_set</span></span><a class="headerlink" href="#app.models.inventory.Inventory.menuinventory_set" title="Permalink to this definition"></a></dt>
+<dd><p>Type: Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#app.models.menu_inventory.MenuInventory" title="app.models.menu_inventory.MenuInventory"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuInventory</span></code></a></p>
+<p>All menu inventorys of this inventory (related name of <a class="reference internal" href="#app.models.menu_inventory.MenuInventory.inventory" title="app.models.menu_inventory.MenuInventory.inventory"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inventory</span></code></a>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.inventory.Inventory.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#app.models.inventory.Inventory.name" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.TextField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextField</span></code></a></p>
+<p>Name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.inventory.Inventory.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#app.models.inventory.Inventory.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.inventory.Inventory.price">
+<span class="sig-name descname"><span class="pre">price</span></span><a class="headerlink" href="#app.models.inventory.Inventory.price" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.FloatField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FloatField</span></code></a></p>
+<p>Price</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.inventory.Inventory.reorder_level">
+<span class="sig-name descname"><span class="pre">reorder_level</span></span><a class="headerlink" href="#app.models.inventory.Inventory.reorder_level" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerField</span></code></a></p>
+<p>Reorder level</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.inventory.Inventory.stock">
+<span class="sig-name descname"><span class="pre">stock</span></span><a class="headerlink" href="#app.models.inventory.Inventory.stock" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerField</span></code></a></p>
+<p>Stock</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.models.menu">
+<span id="app-models-menu-module"></span><h2>app.models.menu module<a class="headerlink" href="#module-app.models.menu" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.models.menu.Menu">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.models.menu.</span></span><span class="sig-name descname"><span class="pre">Menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.menu.Menu" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<p>This is a Django Model of the Menu Table</p>
+<p>It contains:</p>
+<ul class="simple">
+<li><p>name: Name of menu item</p></li>
+<li><p>price: Price of menu item</p></li>
+<li><p>category: Choices representing food item categories (BURGERS, BASKETS, SANDWICHES, SHAKESNSWEETS, BEVERAGES, SIDES or SAUCE</p></li>
+<li><p>description: More details about the menu item</p></li>
+<li><p>season_start: Start of when the menu item is in season</p></li>
+<li><p>season_end: End of when the menu item is in season</p></li>
+<li><p>display: Wether to display the menu item or not</p></li>
+<li><p>image: Reference to the image of the menu item</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.0)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CharField" title="(in Django v5.0)"><em>CharField</em></a>) – Name</p></li>
+<li><p><strong>price</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.FloatField" title="(in Django v5.0)"><em>FloatField</em></a>) – Price</p></li>
+<li><p><strong>category</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.0)"><em>IntegerField</em></a>) – Category</p></li>
+<li><p><strong>description</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.TextField" title="(in Django v5.0)"><em>TextField</em></a>) – Description</p></li>
+<li><p><strong>season_start</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.0)"><em>DateTimeField</em></a>) – Season start</p></li>
+<li><p><strong>season_end</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.0)"><em>DateTimeField</em></a>) – Season end</p></li>
+<li><p><strong>display</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BooleanField" title="(in Django v5.0)"><em>BooleanField</em></a>) – Display</p></li>
+<li><p><strong>image</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.TextField" title="(in Django v5.0)"><em>TextField</em></a>) – Image</p></li>
+</ul>
+</dd>
+</dl>
+<p>Reverse relationships:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>menuinventory</strong> (Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#app.models.menu_inventory.MenuInventory" title="app.models.menu_inventory.MenuInventory"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuInventory</span></code></a>) – All menu inventorys of this menu (related name of <a class="reference internal" href="#app.models.menu_inventory.MenuInventory.menu" title="app.models.menu_inventory.MenuInventory.menu"><code class="xref py py-attr docutils literal notranslate"><span class="pre">menu</span></code></a>)</p></li>
+<li><p><strong>ordermenu</strong> (Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#app.models.order_menu.OrderMenu" title="app.models.order_menu.OrderMenu"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderMenu</span></code></a>) – All order menus of this menu (related name of <a class="reference internal" href="#app.models.order_menu.OrderMenu.menu" title="app.models.order_menu.OrderMenu.menu"><code class="xref py py-attr docutils literal notranslate"><span class="pre">menu</span></code></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.models.menu.Menu.CategoryOptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CategoryOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.menu.Menu.CategoryOptions" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerChoices</span></code></p>
+<p>Contains enumerated choices for categories</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.CategoryOptions.BASKETS">
+<span class="sig-name descname"><span class="pre">BASKETS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#app.models.menu.Menu.CategoryOptions.BASKETS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.CategoryOptions.BEVERAGES">
+<span class="sig-name descname"><span class="pre">BEVERAGES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#app.models.menu.Menu.CategoryOptions.BEVERAGES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.CategoryOptions.BURGERS">
+<span class="sig-name descname"><span class="pre">BURGERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#app.models.menu.Menu.CategoryOptions.BURGERS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.CategoryOptions.SANDWICHES">
+<span class="sig-name descname"><span class="pre">SANDWICHES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#app.models.menu.Menu.CategoryOptions.SANDWICHES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.CategoryOptions.SAUCE">
+<span class="sig-name descname"><span class="pre">SAUCE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#app.models.menu.Menu.CategoryOptions.SAUCE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.CategoryOptions.SHAKESNSWEETS">
+<span class="sig-name descname"><span class="pre">SHAKESNSWEETS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#app.models.menu.Menu.CategoryOptions.SHAKESNSWEETS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.CategoryOptions.SIDES">
+<span class="sig-name descname"><span class="pre">SIDES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#app.models.menu.Menu.CategoryOptions.SIDES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="app.models.menu.Menu.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#app.models.menu.Menu.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.ObjectDoesNotExist" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="app.models.menu.Menu.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#app.models.menu.Menu.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.MultipleObjectsReturned" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.category">
+<span class="sig-name descname"><span class="pre">category</span></span><a class="headerlink" href="#app.models.menu.Menu.category" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerField</span></code></a></p>
+<p>Category</p>
+<p>Choices:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">6</span></code></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#app.models.menu.Menu.description" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.TextField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextField</span></code></a></p>
+<p>Description</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.display">
+<span class="sig-name descname"><span class="pre">display</span></span><a class="headerlink" href="#app.models.menu.Menu.display" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BooleanField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BooleanField</span></code></a></p>
+<p>Display</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.models.menu.Menu.get_category_display">
+<span class="sig-name descname"><span class="pre">get_category_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.IntegerField:</span> <span class="pre">category&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.menu.Menu.get_category_display" title="Permalink to this definition"></a></dt>
+<dd><p>Shows the label of the <a class="reference internal" href="#app.models.menu.Menu.category" title="app.models.menu.Menu.category"><code class="xref py py-attr docutils literal notranslate"><span class="pre">category</span></code></a>. See <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model.get_FOO_display" title="(in Django v5.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_FOO_display()</span></code></a> for more information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.models.menu.Menu.get_next_by_season_end">
+<span class="sig-name descname"><span class="pre">get_next_by_season_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.DateTimeField:</span> <span class="pre">season_end&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.menu.Menu.get_next_by_season_end" title="Permalink to this definition"></a></dt>
+<dd><p>Finds next instance based on <a class="reference internal" href="#app.models.menu.Menu.season_end" title="app.models.menu.Menu.season_end"><code class="xref py py-attr docutils literal notranslate"><span class="pre">season_end</span></code></a>. See <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model.get_next_by_FOO" title="(in Django v5.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_next_by_FOO()</span></code></a> for more information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.models.menu.Menu.get_next_by_season_start">
+<span class="sig-name descname"><span class="pre">get_next_by_season_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.DateTimeField:</span> <span class="pre">season_start&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.menu.Menu.get_next_by_season_start" title="Permalink to this definition"></a></dt>
+<dd><p>Finds next instance based on <a class="reference internal" href="#app.models.menu.Menu.season_start" title="app.models.menu.Menu.season_start"><code class="xref py py-attr docutils literal notranslate"><span class="pre">season_start</span></code></a>. See <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model.get_next_by_FOO" title="(in Django v5.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_next_by_FOO()</span></code></a> for more information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.models.menu.Menu.get_previous_by_season_end">
+<span class="sig-name descname"><span class="pre">get_previous_by_season_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.DateTimeField:</span> <span class="pre">season_end&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.menu.Menu.get_previous_by_season_end" title="Permalink to this definition"></a></dt>
+<dd><p>Finds previous instance based on <a class="reference internal" href="#app.models.menu.Menu.season_end" title="app.models.menu.Menu.season_end"><code class="xref py py-attr docutils literal notranslate"><span class="pre">season_end</span></code></a>. See <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model.get_previous_by_FOO" title="(in Django v5.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_previous_by_FOO()</span></code></a> for more information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.models.menu.Menu.get_previous_by_season_start">
+<span class="sig-name descname"><span class="pre">get_previous_by_season_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.DateTimeField:</span> <span class="pre">season_start&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.menu.Menu.get_previous_by_season_start" title="Permalink to this definition"></a></dt>
+<dd><p>Finds previous instance based on <a class="reference internal" href="#app.models.menu.Menu.season_start" title="app.models.menu.Menu.season_start"><code class="xref py py-attr docutils literal notranslate"><span class="pre">season_start</span></code></a>. See <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model.get_previous_by_FOO" title="(in Django v5.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_previous_by_FOO()</span></code></a> for more information.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#app.models.menu.Menu.id" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BigAutoField</span></code></a></p>
+<p>Primary key: ID</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.image">
+<span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#app.models.menu.Menu.image" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.TextField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextField</span></code></a></p>
+<p>Image</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.menuinventory_set">
+<span class="sig-name descname"><span class="pre">menuinventory_set</span></span><a class="headerlink" href="#app.models.menu.Menu.menuinventory_set" title="Permalink to this definition"></a></dt>
+<dd><p>Type: Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#app.models.menu_inventory.MenuInventory" title="app.models.menu_inventory.MenuInventory"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuInventory</span></code></a></p>
+<p>All menu inventorys of this menu (related name of <a class="reference internal" href="#app.models.menu_inventory.MenuInventory.menu" title="app.models.menu_inventory.MenuInventory.menu"><code class="xref py py-attr docutils literal notranslate"><span class="pre">menu</span></code></a>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#app.models.menu.Menu.name" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CharField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CharField</span></code></a></p>
+<p>Name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#app.models.menu.Menu.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.ordermenu_set">
+<span class="sig-name descname"><span class="pre">ordermenu_set</span></span><a class="headerlink" href="#app.models.menu.Menu.ordermenu_set" title="Permalink to this definition"></a></dt>
+<dd><p>Type: Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#app.models.order_menu.OrderMenu" title="app.models.order_menu.OrderMenu"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderMenu</span></code></a></p>
+<p>All order menus of this menu (related name of <a class="reference internal" href="#app.models.order_menu.OrderMenu.menu" title="app.models.order_menu.OrderMenu.menu"><code class="xref py py-attr docutils literal notranslate"><span class="pre">menu</span></code></a>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.price">
+<span class="sig-name descname"><span class="pre">price</span></span><a class="headerlink" href="#app.models.menu.Menu.price" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.FloatField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FloatField</span></code></a></p>
+<p>Price</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.season_end">
+<span class="sig-name descname"><span class="pre">season_end</span></span><a class="headerlink" href="#app.models.menu.Menu.season_end" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateTimeField</span></code></a></p>
+<p>Season end</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu.Menu.season_start">
+<span class="sig-name descname"><span class="pre">season_start</span></span><a class="headerlink" href="#app.models.menu.Menu.season_start" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateTimeField</span></code></a></p>
+<p>Season start</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.models.menu_inventory">
+<span id="app-models-menu-inventory-module"></span><h2>app.models.menu_inventory module<a class="headerlink" href="#module-app.models.menu_inventory" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.models.menu_inventory.MenuInventory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.models.menu_inventory.</span></span><span class="sig-name descname"><span class="pre">MenuInventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.menu_inventory.MenuInventory" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<p>This is a Django Model of the Menu Inventory Table</p>
+<p>It contains:</p>
+<ul class="simple">
+<li><p>menu: Foregin key for Menu table</p></li>
+<li><p>inventory: Foregin key for Inventory table</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.0)"><em>BigAutoField</em></a>) – Primary key: ID</p>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>menu</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#app.models.menu.Menu" title="app.models.menu.Menu"><code class="xref py py-class docutils literal notranslate"><span class="pre">Menu</span></code></a>) – Menu (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">menuinventory</span></code>)</p></li>
+<li><p><strong>inventory</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#app.models.inventory.Inventory" title="app.models.inventory.Inventory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inventory</span></code></a>) – Inventory (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">menuinventory</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="app.models.menu_inventory.MenuInventory.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#app.models.menu_inventory.MenuInventory.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.ObjectDoesNotExist" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="app.models.menu_inventory.MenuInventory.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#app.models.menu_inventory.MenuInventory.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.MultipleObjectsReturned" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu_inventory.MenuInventory.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#app.models.menu_inventory.MenuInventory.id" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BigAutoField</span></code></a></p>
+<p>Primary key: ID</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu_inventory.MenuInventory.inventory">
+<span class="sig-name descname"><span class="pre">inventory</span></span><a class="headerlink" href="#app.models.menu_inventory.MenuInventory.inventory" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#app.models.inventory.Inventory" title="app.models.inventory.Inventory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inventory</span></code></a></p>
+<p>Inventory (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">menuinventory</span></code>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu_inventory.MenuInventory.inventory_id">
+<span class="sig-name descname"><span class="pre">inventory_id</span></span><a class="headerlink" href="#app.models.menu_inventory.MenuInventory.inventory_id" title="Permalink to this definition"></a></dt>
+<dd><p>Internal field, use <a class="reference internal" href="#app.models.menu_inventory.MenuInventory.inventory" title="app.models.menu_inventory.MenuInventory.inventory"><code class="xref py py-class docutils literal notranslate"><span class="pre">inventory</span></code></a> instead.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu_inventory.MenuInventory.menu">
+<span class="sig-name descname"><span class="pre">menu</span></span><a class="headerlink" href="#app.models.menu_inventory.MenuInventory.menu" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#app.models.menu.Menu" title="app.models.menu.Menu"><code class="xref py py-class docutils literal notranslate"><span class="pre">Menu</span></code></a></p>
+<p>Menu (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">menuinventory</span></code>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu_inventory.MenuInventory.menu_id">
+<span class="sig-name descname"><span class="pre">menu_id</span></span><a class="headerlink" href="#app.models.menu_inventory.MenuInventory.menu_id" title="Permalink to this definition"></a></dt>
+<dd><p>Internal field, use <a class="reference internal" href="#app.models.menu_inventory.MenuInventory.menu" title="app.models.menu_inventory.MenuInventory.menu"><code class="xref py py-class docutils literal notranslate"><span class="pre">menu</span></code></a> instead.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.menu_inventory.MenuInventory.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#app.models.menu_inventory.MenuInventory.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.models.order">
+<span id="app-models-order-module"></span><h2>app.models.order module<a class="headerlink" href="#module-app.models.order" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.models.order.Order">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.models.order.</span></span><span class="sig-name descname"><span class="pre">Order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.order.Order" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<p>This is a Django Model of the Order Table</p>
+<p>It contains:</p>
+<ul class="simple">
+<li><p>employee: Foregin Key of User table</p></li>
+<li><p>total: Total price of the order</p></li>
+<li><p>timestamp: Date and Time of the order</p></li>
+<li><p>status: Current status of the order (In Progress, Completed, Incomplete, Deleted)</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.0)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>total</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.FloatField" title="(in Django v5.0)"><em>FloatField</em></a>) – Total</p></li>
+<li><p><strong>timestamp</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.0)"><em>DateTimeField</em></a>) – Timestamp</p></li>
+<li><p><strong>status</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.0)"><em>IntegerField</em></a>) – Status</p></li>
+</ul>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>employee</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#app.models.user.User" title="app.models.user.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a>) – Employee (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">order</span></code>)</p>
+</dd>
+</dl>
+<p>Reverse relationships:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ordermenu</strong> (Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#app.models.order_menu.OrderMenu" title="app.models.order_menu.OrderMenu"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderMenu</span></code></a>) – All order menus of this order (related name of <a class="reference internal" href="#app.models.order_menu.OrderMenu.order" title="app.models.order_menu.OrderMenu.order"><code class="xref py py-attr docutils literal notranslate"><span class="pre">order</span></code></a>)</p>
+</dd>
+</dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="app.models.order.Order.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#app.models.order.Order.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.ObjectDoesNotExist" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="app.models.order.Order.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#app.models.order.Order.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.MultipleObjectsReturned" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.models.order.Order.Status">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.order.Order.Status" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerChoices</span></code></p>
+<p>Contains enumerated choices for order status</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order.Order.Status.COMPLETED">
+<span class="sig-name descname"><span class="pre">COMPLETED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#app.models.order.Order.Status.COMPLETED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order.Order.Status.DELETED">
+<span class="sig-name descname"><span class="pre">DELETED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#app.models.order.Order.Status.DELETED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order.Order.Status.INCOMPLETE">
+<span class="sig-name descname"><span class="pre">INCOMPLETE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#app.models.order.Order.Status.INCOMPLETE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order.Order.Status.IN_PROGRESS">
+<span class="sig-name descname"><span class="pre">IN_PROGRESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#app.models.order.Order.Status.IN_PROGRESS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order.Order.employee">
+<span class="sig-name descname"><span class="pre">employee</span></span><a class="headerlink" href="#app.models.order.Order.employee" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#app.models.user.User" title="app.models.user.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></p>
+<p>Employee (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">order</span></code>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order.Order.employee_id">
+<span class="sig-name descname"><span class="pre">employee_id</span></span><a class="headerlink" href="#app.models.order.Order.employee_id" title="Permalink to this definition"></a></dt>
+<dd><p>Internal field, use <a class="reference internal" href="#app.models.order.Order.employee" title="app.models.order.Order.employee"><code class="xref py py-class docutils literal notranslate"><span class="pre">employee</span></code></a> instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.models.order.Order.getOrderFromTime">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getOrderFromTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.order.Order.getOrderFromTime" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.models.order.Order.get_next_by_timestamp">
+<span class="sig-name descname"><span class="pre">get_next_by_timestamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.DateTimeField:</span> <span class="pre">timestamp&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.order.Order.get_next_by_timestamp" title="Permalink to this definition"></a></dt>
+<dd><p>Finds next instance based on <a class="reference internal" href="#app.models.order.Order.timestamp" title="app.models.order.Order.timestamp"><code class="xref py py-attr docutils literal notranslate"><span class="pre">timestamp</span></code></a>. See <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model.get_next_by_FOO" title="(in Django v5.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_next_by_FOO()</span></code></a> for more information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.models.order.Order.get_previous_by_timestamp">
+<span class="sig-name descname"><span class="pre">get_previous_by_timestamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.DateTimeField:</span> <span class="pre">timestamp&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.order.Order.get_previous_by_timestamp" title="Permalink to this definition"></a></dt>
+<dd><p>Finds previous instance based on <a class="reference internal" href="#app.models.order.Order.timestamp" title="app.models.order.Order.timestamp"><code class="xref py py-attr docutils literal notranslate"><span class="pre">timestamp</span></code></a>. See <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model.get_previous_by_FOO" title="(in Django v5.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_previous_by_FOO()</span></code></a> for more information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.models.order.Order.get_status_display">
+<span class="sig-name descname"><span class="pre">get_status_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.IntegerField:</span> <span class="pre">status&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.order.Order.get_status_display" title="Permalink to this definition"></a></dt>
+<dd><p>Shows the label of the <a class="reference internal" href="#app.models.order.Order.status" title="app.models.order.Order.status"><code class="xref py py-attr docutils literal notranslate"><span class="pre">status</span></code></a>. See <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model.get_FOO_display" title="(in Django v5.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_FOO_display()</span></code></a> for more information.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order.Order.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#app.models.order.Order.id" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BigAutoField</span></code></a></p>
+<p>Primary key: ID</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order.Order.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#app.models.order.Order.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order.Order.ordermenu_set">
+<span class="sig-name descname"><span class="pre">ordermenu_set</span></span><a class="headerlink" href="#app.models.order.Order.ordermenu_set" title="Permalink to this definition"></a></dt>
+<dd><p>Type: Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#app.models.order_menu.OrderMenu" title="app.models.order_menu.OrderMenu"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderMenu</span></code></a></p>
+<p>All order menus of this order (related name of <a class="reference internal" href="#app.models.order_menu.OrderMenu.order" title="app.models.order_menu.OrderMenu.order"><code class="xref py py-attr docutils literal notranslate"><span class="pre">order</span></code></a>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order.Order.status">
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#app.models.order.Order.status" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerField</span></code></a></p>
+<p>Status</p>
+<p>Choices:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order.Order.timestamp">
+<span class="sig-name descname"><span class="pre">timestamp</span></span><a class="headerlink" href="#app.models.order.Order.timestamp" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateTimeField</span></code></a></p>
+<p>Timestamp</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order.Order.total">
+<span class="sig-name descname"><span class="pre">total</span></span><a class="headerlink" href="#app.models.order.Order.total" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.FloatField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FloatField</span></code></a></p>
+<p>Total</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.models.order_menu">
+<span id="app-models-order-menu-module"></span><h2>app.models.order_menu module<a class="headerlink" href="#module-app.models.order_menu" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.models.order_menu.OrderMenu">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.models.order_menu.</span></span><span class="sig-name descname"><span class="pre">OrderMenu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.order_menu.OrderMenu" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<p>This is a Django Model of the Order Menu Table</p>
+<p>It contains:</p>
+<ul class="simple">
+<li><p>order: Foregin key for order table</p></li>
+<li><p>menu: Foregin key for menu table</p></li>
+<li><p>quantity: Integer Field for quantity of Order</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.0)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>quantity</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.0)"><em>IntegerField</em></a>) – Quantity</p></li>
+</ul>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#app.models.order.Order" title="app.models.order.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a>) – Order (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">ordermenu</span></code>)</p></li>
+<li><p><strong>menu</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#app.models.menu.Menu" title="app.models.menu.Menu"><code class="xref py py-class docutils literal notranslate"><span class="pre">Menu</span></code></a>) – Menu (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">ordermenu</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="app.models.order_menu.OrderMenu.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#app.models.order_menu.OrderMenu.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.ObjectDoesNotExist" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="app.models.order_menu.OrderMenu.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#app.models.order_menu.OrderMenu.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.MultipleObjectsReturned" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order_menu.OrderMenu.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#app.models.order_menu.OrderMenu.id" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BigAutoField</span></code></a></p>
+<p>Primary key: ID</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order_menu.OrderMenu.menu">
+<span class="sig-name descname"><span class="pre">menu</span></span><a class="headerlink" href="#app.models.order_menu.OrderMenu.menu" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#app.models.menu.Menu" title="app.models.menu.Menu"><code class="xref py py-class docutils literal notranslate"><span class="pre">Menu</span></code></a></p>
+<p>Menu (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">ordermenu</span></code>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order_menu.OrderMenu.menu_id">
+<span class="sig-name descname"><span class="pre">menu_id</span></span><a class="headerlink" href="#app.models.order_menu.OrderMenu.menu_id" title="Permalink to this definition"></a></dt>
+<dd><p>Internal field, use <a class="reference internal" href="#app.models.order_menu.OrderMenu.menu" title="app.models.order_menu.OrderMenu.menu"><code class="xref py py-class docutils literal notranslate"><span class="pre">menu</span></code></a> instead.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order_menu.OrderMenu.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#app.models.order_menu.OrderMenu.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order_menu.OrderMenu.order">
+<span class="sig-name descname"><span class="pre">order</span></span><a class="headerlink" href="#app.models.order_menu.OrderMenu.order" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#app.models.order.Order" title="app.models.order.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a></p>
+<p>Order (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">ordermenu</span></code>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order_menu.OrderMenu.order_id">
+<span class="sig-name descname"><span class="pre">order_id</span></span><a class="headerlink" href="#app.models.order_menu.OrderMenu.order_id" title="Permalink to this definition"></a></dt>
+<dd><p>Internal field, use <a class="reference internal" href="#app.models.order_menu.OrderMenu.order" title="app.models.order_menu.OrderMenu.order"><code class="xref py py-class docutils literal notranslate"><span class="pre">order</span></code></a> instead.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.order_menu.OrderMenu.quantity">
+<span class="sig-name descname"><span class="pre">quantity</span></span><a class="headerlink" href="#app.models.order_menu.OrderMenu.quantity" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerField</span></code></a></p>
+<p>Quantity</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.models.user">
+<span id="app-models-user-module"></span><h2>app.models.user module<a class="headerlink" href="#module-app.models.user" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.models.user.User">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.models.user.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.user.User" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<p>This is a Django Model of the User Table</p>
+<p>It contains:</p>
+<ul class="simple">
+<li><p>user: Name of the user</p></li>
+<li><p>email: Email of the user</p></li>
+<li><p>user_type: Specify if the user is a CUSTOMER, KITCHEN, CASHIER, MANAGER, or ADMIN</p></li>
+<li><p>shift_start: Date Time of Shift Start of User</p></li>
+<li><p>shift_end: Date Time</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.0)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CharField" title="(in Django v5.0)"><em>CharField</em></a>) – Name</p></li>
+<li><p><strong>email</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.TextField" title="(in Django v5.0)"><em>TextField</em></a>) – Email</p></li>
+<li><p><strong>user_type</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.0)"><em>IntegerField</em></a>) – User type</p></li>
+<li><p><strong>shift_start</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.0)"><em>DateTimeField</em></a>) – Shift start</p></li>
+<li><p><strong>shift_end</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.0)"><em>DateTimeField</em></a>) – Shift end</p></li>
+</ul>
+</dd>
+</dl>
+<p>Reverse relationships:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>order</strong> (Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#app.models.order.Order" title="app.models.order.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a>) – All orders of this user (related name of <a class="reference internal" href="#app.models.order.Order.employee" title="app.models.order.Order.employee"><code class="xref py py-attr docutils literal notranslate"><span class="pre">employee</span></code></a>)</p>
+</dd>
+</dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="app.models.user.User.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#app.models.user.User.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.ObjectDoesNotExist" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="app.models.user.User.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#app.models.user.User.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.MultipleObjectsReturned" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.models.user.User.UserOptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UserOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.user.User.UserOptions" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerChoices</span></code></p>
+<p>Enumerated field with type of user</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.UserOptions.ADMIN">
+<span class="sig-name descname"><span class="pre">ADMIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#app.models.user.User.UserOptions.ADMIN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.UserOptions.CASHIER">
+<span class="sig-name descname"><span class="pre">CASHIER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#app.models.user.User.UserOptions.CASHIER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.UserOptions.CUSTOMER">
+<span class="sig-name descname"><span class="pre">CUSTOMER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#app.models.user.User.UserOptions.CUSTOMER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.UserOptions.KITCHEN">
+<span class="sig-name descname"><span class="pre">KITCHEN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#app.models.user.User.UserOptions.KITCHEN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.UserOptions.MANAGER">
+<span class="sig-name descname"><span class="pre">MANAGER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#app.models.user.User.UserOptions.MANAGER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.email">
+<span class="sig-name descname"><span class="pre">email</span></span><a class="headerlink" href="#app.models.user.User.email" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.TextField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextField</span></code></a></p>
+<p>Email</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.models.user.User.get_user_type_display">
+<span class="sig-name descname"><span class="pre">get_user_type_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.IntegerField:</span> <span class="pre">user_type&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.user.User.get_user_type_display" title="Permalink to this definition"></a></dt>
+<dd><p>Shows the label of the <a class="reference internal" href="#app.models.user.User.user_type" title="app.models.user.User.user_type"><code class="xref py py-attr docutils literal notranslate"><span class="pre">user_type</span></code></a>. See <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model.get_FOO_display" title="(in Django v5.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_FOO_display()</span></code></a> for more information.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#app.models.user.User.id" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BigAutoField</span></code></a></p>
+<p>Primary key: ID</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#app.models.user.User.name" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CharField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CharField</span></code></a></p>
+<p>Name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#app.models.user.User.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.order_set">
+<span class="sig-name descname"><span class="pre">order_set</span></span><a class="headerlink" href="#app.models.user.User.order_set" title="Permalink to this definition"></a></dt>
+<dd><p>Type: Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#app.models.order.Order" title="app.models.order.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a></p>
+<p>All orders of this user (related name of <a class="reference internal" href="#app.models.order.Order.employee" title="app.models.order.Order.employee"><code class="xref py py-attr docutils literal notranslate"><span class="pre">employee</span></code></a>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.shift_end">
+<span class="sig-name descname"><span class="pre">shift_end</span></span><a class="headerlink" href="#app.models.user.User.shift_end" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateTimeField</span></code></a></p>
+<p>Shift end</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.shift_start">
+<span class="sig-name descname"><span class="pre">shift_start</span></span><a class="headerlink" href="#app.models.user.User.shift_start" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateTimeField</span></code></a></p>
+<p>Shift start</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.models.user.User.user_type">
+<span class="sig-name descname"><span class="pre">user_type</span></span><a class="headerlink" href="#app.models.user.User.user_type" title="Permalink to this definition"></a></dt>
+<dd><p>Type: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerField</span></code></a></p>
+<p>User type</p>
+<p>Choices:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="app.migrations.html" class="btn btn-neutral float-left" title="app.migrations package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="populate_database.html" class="btn btn-neutral float-right" title="populate_database package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rushil Jayant, Riley Wenckens, Rahul Rajendran, Elvis Chen, Diego Martinez, Laith Bohsali.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+GET /user/
+HTTP 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+[
+    {
+        "id": 13,
+        "name": "Laith",
+        "email": "lbohsali@tamu.edu",
+        "user_type": 3,
+        "shift_start": null,
+        "shift_end": null
+    },
+    {
+        "id": 19,
+        "name": "Riley",
+        "email": "rgwenckens@gmail.com",
+        "user_type": 4,
+        "shift_start": null,
+        "shift_end": null
+    },
+    {
+        "id": 1,
+        "name": "Bob",
+        "email": "bob@gmail.com",
+        "user_type": 0,
+        "shift_start": "2024-02-21T09:03:43Z",
+        "shift_end": "2024-02-21T10:00:00Z"
+    },
+    {
+        "id": 2,
+        "name": "Sam",
+        "email": "sam@gmail.com",
+        "user_type": 1,
+        "shift_start": "2024-02-21T09:56:55Z",
+        "shift_end": "2024-02-21T10:00:00Z"
+    },
+    {
+        "id": 3,
+        "name": "Tyler",
+        "email": "tyler@gmail.com",
+        "user_type": 2,
+        "shift_start": "2024-02-21T09:30:26Z",
+        "shift_end": "2024-02-21T10:00:00Z"
+    },
+    {
+        "id": 4,
+        "name": "Will",
+        "email": "will@gmail.com",
+        "user_type": 1,
+        "shift_start": "2024-02-21T09:45:32Z",
+        "shift_end": "2024-02-21T10:00:00Z"
+    },
+    {
+        "id": 5,
+        "name": "Dyllan",
+        "email": "dyllan@gmail.com",
+        "user_type": 1,
+        "shift_start": "2024-02-21T10:05:38Z",
+        "shift_end": "2024-02-21T10:30:00Z"
+    },
+    {
+        "id": 12,
+        "name": "Elvis",
+        "email": "ch0110en@tamu.edu",
+        "user_type": 3,
+        "shift_start": null,
+        "shift_end": null
+    },
+    {
+        "id": 6,
+        "name": "george",
+        "email": "george@gmail.com",
+        "user_type": 0,
+        "shift_start": null,
+        "shift_end": null
+    },
+    {
+        "id": 7,
+        "name": "george",
+        "email": "george2@gmail.com",
+        "user_type": 0,
+        "shift_start": null,
+        "shift_end": null
+    },
+    {
+        "id": 17,
+        "name": "Rahul",
+        "email": "rahulrajendran@tamu.edu",
+        "user_type": 3,
+        "shift_start": null,
+        "shift_end": null
+    },
+    {
+        "id": 15,
+        "name": "Diego",
+        "email": "yolomicswagins2014@gmail.com",
+        "user_type": 1,
+        "shift_start": null,
+        "shift_end": null
+    },
+    {
+        "id": 18,
+        "name": "Rahul",
+        "email": "rahul.rajendran2724@gmail.com",
+        "user_type": 0,
+        "shift_start": null,
+        "shift_end": null
+    },
+    {
+        "id": 11,
+        "name": "Elvis",
+        "email": "elvischen291work@gmail.com",
+        "user_type": 2,
+        "shift_start": null,
+        "shift_end": null
+    },
+    {
+        "id": 16,
+        "name": "Riley",
+        "email": "rgwenckens@tamu.edu",
+        "user_type": 3,
+        "shift_start": null,
+        "shift_end": null
+    },
+    {
+        "id": 10,
+        "name": "Elvis",
+        "email": "elvis.chen@aayats.com",
+        "user_type": 0,
+        "shift_start": null,
+        "shift_end": null
+    },
+    {
+        "id": 14,
+        "name": "Diego",
+        "email": "dxmartinez2018@gmail.com",
+        "user_type": 3,
+        "shift_start": null,
+        "shift_end": null
+    },
+    {
+        "id": 8,
+        "name": "Elvis",
+        "email": "elvischen291@gmail.com",
+        "user_type": 0,
+        "shift_start": null,
+        "shift_end": null
+    }
+]

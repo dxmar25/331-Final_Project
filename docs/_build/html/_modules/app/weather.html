@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>app.weather &mdash; Rev&#39;s Restaurant POS System 3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=d636b35b"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Rev's Restaurant POS System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../app.html">app package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../populate_database.html">populate_database package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../revs_backend.html">revs_backend package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Rev's Restaurant POS System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">app.weather</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for app.weather</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># current weather info https://openweathermap.org/current</span>
+
+<span class="c1"># need [&#39;coord&#39;,&#39;weather&#39;,&#39;base&#39;,&#39;main&#39;,&#39;wind&#39;,&#39;visibility&#39;]</span>
+
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;8b9d48ac8ce58965eea3d5fa09bf1a7f&quot;</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="s2">&quot;30.612541&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="s2">&quot;-96.3433166&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dt&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())),</span>
+    <span class="s2">&quot;appid&quot;</span><span class="p">:</span> <span class="n">API_KEY</span><span class="p">,</span>
+    <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;imperial&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="n">weatherData</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># empty initialization</span>
+
+
+<span class="c1"># run at start of each function</span>
+<div class="viewcode-block" id="getCurrentInfo"><a class="viewcode-back" href="../../app.html#app.weather.getCurrentInfo">[docs]</a><span class="k">def</span> <span class="nf">getCurrentInfo</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">weatherData</span>
+    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;dt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s2">&quot;https://api.openweathermap.org/data/2.5/weather?&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+    <span class="p">)</span>
+    <span class="n">weatherData</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div>
+    <span class="c1"># print(weatherData)</span>
+
+
+<span class="c1"># assumes getCurrentInfo has been run</span>
+<div class="viewcode-block" id="getTemperature"><a class="viewcode-back" href="../../app.html#app.weather.getTemperature">[docs]</a><span class="k">def</span> <span class="nf">getTemperature</span><span class="p">():</span>
+    <span class="c1"># print(weatherData)</span>
+    <span class="k">return</span> <span class="n">weatherData</span><span class="p">[</span><span class="s2">&quot;main&quot;</span><span class="p">][</span><span class="s2">&quot;temp&quot;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="getWeatherIcon"><a class="viewcode-back" href="../../app.html#app.weather.getWeatherIcon">[docs]</a><span class="k">def</span> <span class="nf">getWeatherIcon</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">weatherData</span><span class="p">[</span><span class="s2">&quot;weather&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;icon&quot;</span><span class="p">]</span></div>
+
+
+<span class="c1"># TODO: weather descriptions from website https://openweathermap.org/weather-conditions</span>
+<div class="viewcode-block" id="getWeatherConditionName"><a class="viewcode-back" href="../../app.html#app.weather.getWeatherConditionName">[docs]</a><span class="k">def</span> <span class="nf">getWeatherConditionName</span><span class="p">():</span>
+    <span class="c1"># weather conditions based on id</span>
+    <span class="n">conditionName</span> <span class="o">=</span> <span class="s2">&quot;Unknown&quot;</span>
+    <span class="n">conditionNumber</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">weatherData</span><span class="p">[</span><span class="s2">&quot;weather&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># 2,3,4,5</span>
+    <span class="k">if</span> <span class="n">weatherData</span><span class="p">[</span><span class="s2">&quot;weather&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;800&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Clear&quot;</span>
+
+    <span class="k">if</span> <span class="n">conditionNumber</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+        <span class="n">conditionName</span> <span class="o">=</span> <span class="s2">&quot;Thunderstorm&quot;</span>
+    <span class="k">if</span> <span class="n">conditionNumber</span> <span class="o">==</span> <span class="s2">&quot;3&quot;</span><span class="p">:</span>
+        <span class="n">conditionName</span> <span class="o">=</span> <span class="s2">&quot;Drizzle&quot;</span>
+    <span class="k">if</span> <span class="n">conditionNumber</span> <span class="o">==</span> <span class="s2">&quot;5&quot;</span><span class="p">:</span>
+        <span class="n">conditionName</span> <span class="o">=</span> <span class="s2">&quot;Rain&quot;</span>
+    <span class="k">if</span> <span class="n">conditionNumber</span> <span class="o">==</span> <span class="s2">&quot;6&quot;</span><span class="p">:</span>
+        <span class="n">conditionName</span> <span class="o">=</span> <span class="s2">&quot;Snow&quot;</span>  <span class="c1"># highly improbable</span>
+    <span class="k">if</span> <span class="n">conditionNumber</span> <span class="o">==</span> <span class="s2">&quot;7&quot;</span><span class="p">:</span>
+        <span class="n">conditionName</span> <span class="o">=</span> <span class="s2">&quot;Obscure&quot;</span>
+    <span class="k">if</span> <span class="n">conditionNumber</span> <span class="o">==</span> <span class="s2">&quot;8&quot;</span><span class="p">:</span>
+        <span class="n">conditionName</span> <span class="o">=</span> <span class="s2">&quot;Cloudy&quot;</span>
+
+    <span class="k">return</span> <span class="n">conditionName</span></div>
+
+
+<span class="c1"># TODO: surge pricing conditions</span>
+
+
+<span class="c1"># Combine all useful data and put here (for main api call)</span>
+<div class="viewcode-block" id="getAggregateData"><a class="viewcode-back" href="../../app.html#app.weather.getAggregateData">[docs]</a><span class="k">def</span> <span class="nf">getAggregateData</span><span class="p">():</span>
+    <span class="n">getCurrentInfo</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">getTemperature</span><span class="p">(),</span>
+        <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="n">getWeatherIcon</span><span class="p">(),</span>  <span class="c1"># icon</span>
+        <span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="n">getWeatherConditionName</span><span class="p">(),</span>
+        <span class="s2">&quot;surge&quot;</span><span class="p">:</span> <span class="n">getSurgePricing</span><span class="p">(),</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Surge pricing formula</span>
+<span class="sd">Burgers</span>
+<span class="sd">Baskets</span>
+<span class="sd">Shakes n Sweets (1.25x price if temp greater than 80, 1.5x if greater than 90, 2x if greater than 100)</span>
+<span class="sd">Sandwiches</span>
+<span class="sd">Beverages (1.25x price if temp greater than 80, 1.5x if greater than 90, 2x if greater than 100)</span>
+<span class="sd">Sides (1.25x)</span>
+<span class="sd">Sauces</span>
+
+<span class="sd">if &quot;thunderstorm&quot; 2x everything on top of existing multiplier</span>
+<span class="sd">if rain 1.25x on everything</span>
+
+<span class="sd">if </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="getSurgePricing"><a class="viewcode-back" href="../../app.html#app.weather.getSurgePricing">[docs]</a><span class="k">def</span> <span class="nf">getSurgePricing</span><span class="p">():</span>
+    <span class="c1"># assgumes latest data</span>
+    <span class="n">surgeDefault</span> <span class="o">=</span> <span class="mf">1.1</span>
+    <span class="n">surgeCategories</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Burgers&quot;</span><span class="p">:</span> <span class="n">surgeDefault</span><span class="p">,</span>
+        <span class="s2">&quot;Baskets&quot;</span><span class="p">:</span> <span class="n">surgeDefault</span><span class="p">,</span>
+        <span class="s2">&quot;ShakesnSweets&quot;</span><span class="p">:</span> <span class="n">surgeDefault</span><span class="p">,</span>
+        <span class="s2">&quot;Sandwiches&quot;</span><span class="p">:</span> <span class="n">surgeDefault</span><span class="p">,</span>
+        <span class="s2">&quot;Beverages&quot;</span><span class="p">:</span> <span class="n">surgeDefault</span><span class="p">,</span>
+        <span class="s2">&quot;Sides&quot;</span><span class="p">:</span> <span class="n">surgeDefault</span><span class="p">,</span>
+        <span class="s2">&quot;Sauces&quot;</span><span class="p">:</span> <span class="n">surgeDefault</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">getTemperature</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">temp</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="n">surgeCategories</span><span class="p">[</span><span class="s2">&quot;ShakesnSweets&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span>
+        <span class="n">surgeCategories</span><span class="p">[</span><span class="s2">&quot;Beverages&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span>
+    <span class="k">elif</span> <span class="n">temp</span> <span class="o">&gt;</span> <span class="mi">90</span><span class="p">:</span>
+        <span class="n">surgeCategories</span><span class="p">[</span><span class="s2">&quot;ShakesnSweets&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.5</span>
+        <span class="n">surgeCategories</span><span class="p">[</span><span class="s2">&quot;Beverages&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.5</span>
+    <span class="k">elif</span> <span class="n">temp</span> <span class="o">&gt;</span> <span class="mi">80</span><span class="p">:</span>
+        <span class="n">surgeCategories</span><span class="p">[</span><span class="s2">&quot;ShakesnSweets&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.25</span>
+        <span class="n">surgeCategories</span><span class="p">[</span><span class="s2">&quot;Beverages&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.25</span>
+
+    <span class="k">if</span> <span class="n">getWeatherConditionName</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Thunderstorm&quot;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">surgeCategories</span><span class="p">:</span>
+            <span class="n">surgeCategories</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span>
+    <span class="k">elif</span> <span class="n">getWeatherConditionName</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Rain&quot;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">surgeCategories</span><span class="p">:</span>
+            <span class="n">surgeCategories</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.25</span>
+
+    <span class="k">return</span> <span class="n">surgeCategories</span></div>
+
+
+<span class="c1"># DEBUG</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="ow">in</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">getCurrentInfo</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">getAggregateData</span><span class="p">())</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rushil Jayant, Riley Wenckens, Rahul Rajendran, Elvis Chen, Diego Martinez, Laith Bohsali.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

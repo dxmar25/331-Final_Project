@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>app.views &mdash; Rev&#39;s Restaurant POS System 3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=d636b35b"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Rev's Restaurant POS System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../app.html">app package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../populate_database.html">populate_database package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../revs_backend.html">revs_backend package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Rev's Restaurant POS System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">app.views</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for app.views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">HttpResponse</span>
+<span class="kn">import</span> <span class="nn">django_filters.rest_framework</span>
+<span class="kn">from</span> <span class="nn">rest_framework.views</span> <span class="kn">import</span> <span class="n">APIView</span>
+<span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">connection</span>
+<span class="kn">from</span> <span class="nn">.models.menu</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.models.user</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">viewsets</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">filters</span>
+<span class="kn">from</span> <span class="nn">.weather</span> <span class="kn">import</span> <span class="n">getAggregateData</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">transaction</span>
+
+<span class="c1"># Create your views here.</span>
+<div class="viewcode-block" id="home"><a class="viewcode-back" href="../../app.html#app.views.home">[docs]</a><span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MenuViewSet"><a class="viewcode-back" href="../../app.html#app.views.MenuViewSet">[docs]</a><span class="k">class</span> <span class="nc">MenuViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Menu</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">MenuSerializer</span>
+    <span class="n">filter_backends</span> <span class="o">=</span> <span class="p">[</span><span class="n">filters</span><span class="o">.</span><span class="n">OrderingFilter</span><span class="p">]</span>
+    <span class="n">ordering_fields</span> <span class="o">=</span> <span class="s1">&#39;__all__&#39;</span>
+<div class="viewcode-block" id="MenuViewSet.get_queryset"><a class="viewcode-back" href="../../app.html#app.views.MenuViewSet.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">queryset</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
+        <span class="n">category</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">category</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">queryset</span></div></div>
+
+<div class="viewcode-block" id="InventoryViewSet"><a class="viewcode-back" href="../../app.html#app.views.InventoryViewSet">[docs]</a><span class="k">class</span> <span class="nc">InventoryViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Inventory</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">InventorySerializer</span>
+    <span class="n">filter_backends</span> <span class="o">=</span> <span class="p">[</span><span class="n">filters</span><span class="o">.</span><span class="n">OrderingFilter</span><span class="p">]</span>
+    <span class="n">ordering_fields</span> <span class="o">=</span> <span class="s1">&#39;__all__&#39;</span>
+
+<div class="viewcode-block" id="InventoryViewSet.destroy"><a class="viewcode-back" href="../../app.html#app.views.InventoryViewSet.destroy">[docs]</a>    <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
+        <span class="n">inventory_id</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">id</span>
+
+        <span class="k">with</span> <span class="n">transaction</span><span class="o">.</span><span class="n">atomic</span><span class="p">():</span>
+            <span class="n">MenuInventory</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">inventory_id</span><span class="o">=</span><span class="n">inventory_id</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">perform_destroy</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+        <span class="c1">#w</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_204_NO_CONTENT</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="UserViewSet"><a class="viewcode-back" href="../../app.html#app.views.UserViewSet">[docs]</a><span class="k">class</span> <span class="nc">UserViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">UserSerializer</span>
+    <span class="n">filter_backends</span> <span class="o">=</span> <span class="p">[</span><span class="n">filters</span><span class="o">.</span><span class="n">OrderingFilter</span><span class="p">]</span>
+    <span class="n">ordering_fields</span> <span class="o">=</span> <span class="s1">&#39;__all__&#39;</span>
+<div class="viewcode-block" id="UserViewSet.create"><a class="viewcode-back" href="../../app.html#app.views.UserViewSet.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_serializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">email</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
+        <span class="n">existing_user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+        <span class="c1">## ignore duplicate user, update user with same email</span>
+        <span class="k">if</span> <span class="n">existing_user</span><span class="p">:</span>
+            <span class="c1"># Update the existing user with the new data</span>
+            <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_serializer</span><span class="p">(</span><span class="n">existing_user</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Create a new user</span>
+            <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_201_CREATED</span><span class="p">)</span></div></div>
+    
+    
+<div class="viewcode-block" id="OrderViewSet"><a class="viewcode-back" href="../../app.html#app.views.OrderViewSet">[docs]</a><span class="k">class</span> <span class="nc">OrderViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Order</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">OrderSerializer</span>
+    <span class="n">filter_backends</span> <span class="o">=</span> <span class="p">[</span><span class="n">filters</span><span class="o">.</span><span class="n">OrderingFilter</span><span class="p">,</span> <span class="n">filters</span><span class="o">.</span><span class="n">SearchFilter</span><span class="p">]</span>
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;=id&#39;</span><span class="p">,</span> <span class="s1">&#39;=status&#39;</span><span class="p">)</span>
+    <span class="n">ordering_fields</span> <span class="o">=</span> <span class="s1">&#39;__all__&#39;</span>
+
+    <span class="c1">#USING THE DEFAULT UPPDATE.</span>
+
+    <span class="c1"># def update(self, request, pk=None):</span>
+    <span class="c1">#     instance = self.get_object()</span>
+    <span class="c1">#     serializer = OrderSerializer(instance, data=request.data)</span>
+    <span class="c1">#     serializer.is_valid(raise_exception=True)</span>
+    <span class="c1">#     serializer.save()</span>
+    <span class="c1">#     return Response(serializer.data)</span>
+<div class="viewcode-block" id="OrderViewSet.get_queryset"><a class="viewcode-back" href="../../app.html#app.views.OrderViewSet.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">queryset</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span>  <span class="c1"># Assuming you&#39;re passing order_id as a query parameter</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">id</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">status</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">queryset</span></div></div>
+    <span class="c1"># def create(self, request, *args, **kwargs):</span>
+    <span class="c1">#     serializer = self.get_serializer(data=request.data)</span>
+    <span class="c1">#     serializer.is_valid(raise_exception=True)</span>
+
+    <span class="c1">#     edit_id = self.request.query_params.get(&#39;edit_id&#39;)</span>
+    <span class="c1">#     print(edit_id)</span>
+    <span class="c1">#     existing_order = User.objects.filter(id=edit_id).first()</span>
+    <span class="c1">#     ## update order with same id</span>
+    <span class="c1">#     if existing_order:</span>
+    <span class="c1">#         # Update the existing order with the new data</span>
+    <span class="c1">#         serializer = self.get_serializer(existing_order, data=request.data)</span>
+    <span class="c1">#         serializer.is_valid(raise_exception=True)</span>
+    <span class="c1">#         serializer.save()</span>
+    <span class="c1">#         return Response(serializer.data, status=status.HTTP_200_OK)</span>
+    <span class="c1">#     else:</span>
+    <span class="c1">#         serializer.save()</span>
+    <span class="c1">#         return Response(serializer.data, status=status.HTTP_201_CREATED)</span>
+    
+<div class="viewcode-block" id="OrderMenuViewSet"><a class="viewcode-back" href="../../app.html#app.views.OrderMenuViewSet">[docs]</a><span class="k">class</span> <span class="nc">OrderMenuViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">OrderMenu</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">OrderMenuSerializer</span>
+    <span class="n">filter_backends</span> <span class="o">=</span> <span class="p">[</span><span class="n">filters</span><span class="o">.</span><span class="n">SearchFilter</span><span class="p">]</span>
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;=id&#39;</span><span class="p">,</span> <span class="s1">&#39;=order__id&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="OrderMenuViewSet.get_queryset"><a class="viewcode-back" href="../../app.html#app.views.OrderMenuViewSet.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">queryset</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
+        <span class="n">order_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;order_id&#39;</span><span class="p">)</span>  
+        <span class="nb">id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">id</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">order_id</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">order__id</span><span class="o">=</span><span class="n">order_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">queryset</span></div>
+<div class="viewcode-block" id="OrderMenuViewSet.delete"><a class="viewcode-back" href="../../app.html#app.views.OrderMenuViewSet.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">queryset</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
+        <span class="n">order_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;order_id&#39;</span><span class="p">)</span> 
+        <span class="n">queryset_to_delete</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">order__id</span><span class="o">=</span><span class="n">order_id</span><span class="p">)</span>
+        <span class="n">queryset_to_delete</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Queryset deleted successfully&quot;</span><span class="p">})</span></div></div>
+    
+<div class="viewcode-block" id="MenuInventoryViewSet"><a class="viewcode-back" href="../../app.html#app.views.MenuInventoryViewSet">[docs]</a><span class="k">class</span> <span class="nc">MenuInventoryViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">MenuInventory</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">MenuInventorySerializer</span>
+    <span class="n">filter_backends</span> <span class="o">=</span> <span class="p">[</span><span class="n">filters</span><span class="o">.</span><span class="n">SearchFilter</span><span class="p">]</span>
+    <span class="n">search_fields</span> <span class="o">=</span><span class="p">(</span><span class="s1">&#39;=id&#39;</span><span class="p">,</span> <span class="s1">&#39;=menu_id&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="MenuInventoryViewSet.get_queryset"><a class="viewcode-back" href="../../app.html#app.views.MenuInventoryViewSet.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">queryset</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
+        <span class="n">menu_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;menu_id&#39;</span><span class="p">)</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">id</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">menu_id</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">menu_id</span><span class="o">=</span><span class="n">menu_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">queryset</span></div></div>
+
+<div class="viewcode-block" id="WeatherAPIView"><a class="viewcode-back" href="../../app.html#app.views.WeatherAPIView">[docs]</a><span class="k">class</span> <span class="nc">WeatherAPIView</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+<div class="viewcode-block" id="WeatherAPIView.get"><a class="viewcode-back" href="../../app.html#app.views.WeatherAPIView.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">weather_data</span> <span class="o">=</span> <span class="n">getAggregateData</span><span class="p">()</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">WeatherSerializer</span><span class="p">(</span><span class="n">weather_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="ProductUsageChart"><a class="viewcode-back" href="../../app.html#app.views.ProductUsageChart">[docs]</a><span class="k">class</span> <span class="nc">ProductUsageChart</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+<div class="viewcode-block" id="ProductUsageChart.get"><a class="viewcode-back" href="../../app.html#app.views.ProductUsageChart.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;startDate&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">end_date</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;endDate&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">start_date</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">end_date</span><span class="p">)</span>
+
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; </span>
+<span class="s2">                SELECT i.name, COUNT(mi.inventory_id) AS repetition_count</span>
+<span class="s2">                FROM app_menuinventory AS mi</span>
+<span class="s2">                JOIN app_inventory AS i ON mi.inventory_id = i.id</span>
+<span class="s2">                JOIN app_menu AS m ON mi.menu_id = m.id</span>
+<span class="s2">                WHERE m.id IN (</span>
+<span class="s2">                    SELECT om.menu_id</span>
+<span class="s2">                    FROM app_ordermenu AS om</span>
+<span class="s2">                    JOIN app_order AS o ON om.order_id = o.id</span>
+<span class="s2">                    WHERE o.timestamp BETWEEN </span><span class="si">%s</span><span class="s2"> AND </span><span class="si">%s</span>
+<span class="s2">                )</span>
+<span class="s2">                GROUP BY i.name</span>
+<span class="s2">                ORDER BY repetition_count DESC;</span>
+<span class="s2">                &quot;&quot;&quot;</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        
+        <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">[</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">])</span> <span class="c1"># add start and end</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+        <span class="n">inventory_counts</span> <span class="o">=</span> <span class="p">[]</span> 
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">name</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="n">row</span>
+            <span class="n">inventory_counts</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+                <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="n">count</span>
+            <span class="p">})</span>
+        
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">InventoryCountSerializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">inventory_counts</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># this might not work</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div></div>
+    
+<div class="viewcode-block" id="SalesReportChart"><a class="viewcode-back" href="../../app.html#app.views.SalesReportChart">[docs]</a><span class="k">class</span> <span class="nc">SalesReportChart</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+<div class="viewcode-block" id="SalesReportChart.get"><a class="viewcode-back" href="../../app.html#app.views.SalesReportChart.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;startDate&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">end_date</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;endDate&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">start_date</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">end_date</span><span class="p">)</span>
+
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT m.name, COUNT(om.quantity) AS element1, SUM(m.price * om.quantity) AS element2</span>
+<span class="s2">                FROM app_ordermenu om</span>
+<span class="s2">                JOIN app_order o ON om.order_id = o.id</span>
+<span class="s2">                JOIN app_menu m ON om.menu_id = m.id</span>
+<span class="s2">                WHERE o.timestamp BETWEEN </span><span class="si">%s</span><span class="s2"> AND </span><span class="si">%s</span>
+<span class="s2">                GROUP BY m.name</span>
+<span class="s2">                ORDER BY element1 DESC;                        </span>
+<span class="s2">                &quot;&quot;&quot;</span>
+        
+        <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">[</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">])</span> <span class="c1"># add start and end</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">element1</span><span class="p">,</span> <span class="n">element2</span><span class="p">,</span> <span class="n">element3</span> <span class="o">=</span> <span class="n">row</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;element1&quot;</span><span class="p">:</span> <span class="n">element1</span><span class="p">,</span> <span class="c1"># name</span>
+                <span class="s2">&quot;element2&quot;</span><span class="p">:</span> <span class="n">element2</span><span class="p">,</span> <span class="c1"># Quanity sold</span>
+                <span class="s2">&quot;element3&quot;</span><span class="p">:</span> <span class="n">element3</span>  <span class="c1"># Revenue from item</span>
+            <span class="p">})</span>
+
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">SalesReportSerializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">response</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># this might not work</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div></div>
+    
+<div class="viewcode-block" id="ExcessReportView"><a class="viewcode-back" href="../../app.html#app.views.ExcessReportView">[docs]</a><span class="k">class</span> <span class="nc">ExcessReportView</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+<div class="viewcode-block" id="ExcessReportView.get"><a class="viewcode-back" href="../../app.html#app.views.ExcessReportView.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;startDate&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            SELECT i.name, subquery.amount_used, i.stock AS current_stock</span>
+<span class="s2">            FROM app_inventory AS i</span>
+<span class="s2">            LEFT JOIN (</span>
+<span class="s2">                SELECT mi.inventory_id, COUNT(*) AS amount_used</span>
+<span class="s2">                FROM app_menuinventory AS mi</span>
+<span class="s2">                JOIN app_menu AS m ON mi.menu_id = m.id</span>
+<span class="s2">                JOIN app_ordermenu AS om ON m.id = om.menu_id</span>
+<span class="s2">                JOIN app_order AS o ON om.order_id = o.id</span>
+<span class="s2">                WHERE o.timestamp BETWEEN &#39;2022-03-29 00:00:00&#39; AND NOW()</span>
+<span class="s2">                GROUP BY mi.inventory_id</span>
+<span class="s2">            ) AS subquery ON i.id = subquery.inventory_id</span>
+<span class="s2">            WHERE subquery.amount_used &lt; (i.stock * 0.1)</span>
+<span class="s2">            ORDER BY subquery.amount_used;</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">[</span><span class="n">timestamp</span><span class="p">])</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">element1</span><span class="p">,</span> <span class="n">element2</span><span class="p">,</span> <span class="n">element3</span> <span class="o">=</span> <span class="n">row</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;element1&quot;</span><span class="p">:</span> <span class="n">element1</span><span class="p">,</span> <span class="c1">#Item name</span>
+                <span class="s2">&quot;element2&quot;</span><span class="p">:</span> <span class="n">element2</span><span class="p">,</span> <span class="c1">#Quantity used</span>
+                <span class="s2">&quot;element3&quot;</span><span class="p">:</span> <span class="n">element3</span><span class="p">,</span> <span class="c1">#Current stock</span>
+            <span class="p">})</span>
+
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">ExcessReportSerializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">response</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div></div>
+    
+
+<div class="viewcode-block" id="RestockReportView"><a class="viewcode-back" href="../../app.html#app.views.RestockReportView">[docs]</a><span class="k">class</span> <span class="nc">RestockReportView</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+<div class="viewcode-block" id="RestockReportView.get"><a class="viewcode-back" href="../../app.html#app.views.RestockReportView.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            SELECT name, stock AS current_stock, reorder_level</span>
+<span class="s2">            FROM app_inventory</span>
+<span class="s2">            WHERE stock &lt; reorder_level</span>
+<span class="s2">            ORDER BY current_stock;</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">element1</span><span class="p">,</span> <span class="n">element2</span><span class="p">,</span> <span class="n">element3</span> <span class="o">=</span> <span class="n">row</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;element1&quot;</span><span class="p">:</span> <span class="n">element1</span><span class="p">,</span> <span class="c1">#item name</span>
+                <span class="s2">&quot;element2&quot;</span><span class="p">:</span> <span class="n">element2</span><span class="p">,</span> <span class="c1">#current amount</span>
+                <span class="s2">&quot;element3&quot;</span><span class="p">:</span> <span class="n">element3</span><span class="p">,</span> <span class="c1">#Restock Level</span>
+            <span class="p">})</span>
+
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">RestockReportSerializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">response</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div></div>
+    
+<div class="viewcode-block" id="SellsTogetherView"><a class="viewcode-back" href="../../app.html#app.views.SellsTogetherView">[docs]</a><span class="k">class</span> <span class="nc">SellsTogetherView</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+<div class="viewcode-block" id="SellsTogetherView.get"><a class="viewcode-back" href="../../app.html#app.views.SellsTogetherView.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;startDate&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">end_date</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;endDate&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            SELECT m1.name AS item1, m2.name AS item2, COUNT(*) AS count</span>
+<span class="s2">            FROM app_ordermenu om1</span>
+<span class="s2">            JOIN app_ordermenu om2 ON om1.order_id = om2.order_id AND om1.menu_id &lt; om2.menu_id</span>
+<span class="s2">            JOIN app_menu m1 ON om1.menu_id = m1.id</span>
+<span class="s2">            JOIN app_menu m2 ON om2.menu_id = m2.id</span>
+<span class="s2">            JOIN app_order o ON om1.order_id = o.id</span>
+<span class="s2">            WHERE o.timestamp BETWEEN </span><span class="si">%s</span><span class="s2"> AND </span><span class="si">%s</span>
+<span class="s2">            GROUP BY m1.name, m2.name</span>
+<span class="s2">            ORDER BY count DESC</span>
+<span class="s2">            LIMIT 10;</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">[</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">])</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">element1</span><span class="p">,</span> <span class="n">element2</span><span class="p">,</span> <span class="n">element3</span> <span class="o">=</span> <span class="n">row</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;element1&quot;</span><span class="p">:</span> <span class="n">element1</span><span class="p">,</span>
+                <span class="s2">&quot;element2&quot;</span><span class="p">:</span> <span class="n">element2</span><span class="p">,</span>
+                <span class="s2">&quot;element3&quot;</span><span class="p">:</span> <span class="n">element3</span><span class="p">,</span>
+            <span class="p">})</span>
+
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">SellsTogetherSerializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">response</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rushil Jayant, Riley Wenckens, Rahul Rajendran, Elvis Chen, Diego Martinez, Laith Bohsali.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
