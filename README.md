@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/ttC5_kKh)
 ## 🚀 **Option 1: View the Public Production Build**
 https://project-3-full-stack-agile-web-902-team-3.vercel.app/
@@ -383,3 +384,6 @@ TIME OVER
 
 
 
+=======
+# 331-Final_Project
+>>>>>>> f10a7ad63dfa3ba592a4672195c16b93e147292f
